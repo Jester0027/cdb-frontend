@@ -3,11 +3,20 @@
     <div id="logo">LOGO</div>
     <nav>
       <ul>
-        <li class="active"><a routerLink="/">Accueil</a></li>
-        <li>Animaux</li>
-        <li>Évènements</li>
-        <li>Contact</li>
-        <li>Nous soutenir</li>
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/">Accueil</a>
+        </li>
+        <li routerLinkActive="active">Animaux</li>
+        <li routerLinkActive="active">Évènements</li>
+        <li routerLinkActive="active">
+          <a routerLink="/contact"
+            >Contact <fa-icon [icon]="dropdown"></fa-icon
+          ></a>
+        </li>
+        <li routerLinkActive="active">Nous soutenir</li>
       </ul>
     </nav>
   </div>

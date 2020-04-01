@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-transparent-header',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transparent-header.component.scss']
 })
 export class TransparentHeaderComponent implements OnInit {
+  dropdown = faSortDown;
 
   constructor() { }
 
