@@ -1,0 +1,17 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" class="form-control" formControlName="email" placeholder="Adresse Email">
+    </div>
+    <div class="form-group">
+      <label for="subject">Sujet</label>
+      <input id="subject" class="form-control" formControlName="subject" placeholder="Sujet">
+    </div>
+    <div class="form-group">
+      <label for="content">Message</label>
+      <textarea id="content" class="form-control" formControlName="content" placeholder="Message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Envoyer</button>
+  </form>
+</div>

@@ -1,3 +1,4 @@
+import { ContactComponent } from './pages/contact/contact.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +9,10 @@ const routes: Routes = [
   {
     path: '',
     component: FrontComponent,
-    children: [{ path: '', component: HomeComponent }]
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'contact', component: ContactComponent }
+    ]
   }
 ];
 
