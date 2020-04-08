@@ -1,0 +1,19 @@
+@import '../variables';
+
+.app-btn {
+  border: solid 4px $darkPrimaryColor;
+  border-radius: 15px;
+  width: 300px;
+  height: 70px;
+  background-color: transparent;
+  font-size: 32px;
+  color: $darkPrimaryColor;
+  outline: none;
+  outline-width: none;
+  transition: all 200ms;
+}
+
+.app-btn:hover {
+  background-color: $darkPrimaryColor;
+  color: $secondaryText;
+}
