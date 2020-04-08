@@ -1,0 +1,73 @@
+@import '../../../../../styles/variables';
+
+.block {
+  background: $primaryBlockColor;
+  min-height: 300px;
+  padding: 30px 0 100px 0;
+}
+
+h3 {
+  font-weight: bold;
+  padding-top: 30px;
+  text-align: center;
+  margin-bottom: 70px;
+  font-size: 40px;
+}
+
+.map-container {
+  width: 450px;
+  height: 450px;
+  border: solid 5px $darkPrimaryColor;
+  border-radius: 0 100px;
+}
+
+.info-card {
+  position: relative;
+  border: solid 3px $darkPrimaryColor;
+  min-height: 150px;
+  margin-top: 50px;
+
+  .icon-emplacement {
+    position: absolute;
+    background: $primaryBlockColor;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    top: -27.5px;
+    left: -27.5px;
+    border: solid 3px $darkPrimaryColor;
+    border-bottom-color: transparent;
+    transform: rotate(-45deg);
+  }
+
+  >fa-icon {
+    position: absolute;
+    font-size: 40px;
+    color: $darkPrimaryColor;
+    top: -28px;
+    left: -20.5px;
+  }
+}
+
+.info-card .content {
+  margin: 25px;    
+
+  .info {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    fa-icon {
+      font-size: 32px;
+      color: $darkPrimaryColor;
+    }
+
+    p {
+      position: absolute;
+      left: 70px;
+      font-size: 18px;
+      color: $primaryText;
+    }
+  }
+
+}

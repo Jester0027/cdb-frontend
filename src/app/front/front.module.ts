@@ -9,9 +9,13 @@ import { FrontComponent } from './front.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TransparentHeaderComponent } from './components/transparent-header/transparent-header.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { HistoryComponent } from './components/home/history/history.component';
+import { ServicesBlockComponent } from './components/home/services-block/services-block.component';
+import { MoreInfoComponent } from './components/home/more-info/more-info.component';
+import { AnimalsSectionComponent } from './components/animals/animals-section/animals-section.component';
+import { AnimalsCardComponent } from './components/animals/animals-card/animals-card.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +23,14 @@ import { ContactComponent } from './pages/contact/contact.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    TransparentHeaderComponent,
     WelcomeComponent,
     ContactFormComponent,
-    ContactComponent
+    ContactComponent,
+    HistoryComponent,
+    ServicesBlockComponent,
+    MoreInfoComponent,
+    AnimalsSectionComponent,
+    AnimalsCardComponent
   ],
   imports: [CommonModule, FrontRoutingModule, FontAwesomeModule, ReactiveFormsModule]
 })
