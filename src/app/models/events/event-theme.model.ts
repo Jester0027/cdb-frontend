@@ -1,3 +1,4 @@
+import { Event } from './event.model';
 
 export interface EventTheme {
   id: number;
