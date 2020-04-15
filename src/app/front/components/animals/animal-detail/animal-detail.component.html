@@ -1,0 +1,66 @@
+<div class="animal-detail">
+  <div class="container">
+    <div class="content" *ngIf="!isLoading && !error">
+      <h1>Profil de {{ animal.name }}</h1>
+      <div class="row description">
+        <p>{{ animal.description }}</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="image">
+            <img [src]="imageUrl" [alt]="imageDescription" />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <p><span class="label">nom</span>: {{ animal.name }}</p>
+          <p>
+            <span class="label">sexe</span>:
+            {{ animal.gender ? 'male' : 'femelle' }}
+          </p>
+          <p><span class="label">race</span>: {{ animal.race }}</p>
+          <p><span class="label">taille</span>: {{ animal.height }} cm</p>
+          <p><span class="label">masse</span>: {{ animal.weight }} kg</p>
+          <p><span class="label">age</span>: {{ animal.age }} ans</p>
+          <p>
+            <span class="label">Attitude de {{ animal.name }}</span
+            >: {{ animal.attitude }}
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="contact">
+            <p>
+              Vous désirez avoir plus d'informations sur {{ animal.name }} ou vous voulez
+              l'adopter ? Contactez nous :
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row contact-info">
+        <div class="col-lg-6">
+          <p>+32 412345678</p>
+        </div>
+        <div class="col-lg-6">
+          <p>
+            <a
+              [routerLink]="['/contact']"
+              [queryParams]="{ animal: animal.name, id: animal.id }"
+              >Nous contacter</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <div *ngIf="!isLoading && error">
+      <p>Une erreur est survenue : {{ error }}</p>
+      <button (click)="clearError()" class="btn btn-danger">Ok</button>
+    </div>
+  </div>
+</div>
