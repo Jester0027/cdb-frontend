@@ -1,4 +1,4 @@
-interface Meta {
+export interface Meta {
   limit: number;
   currentItems: number;
   totalItems: number;
