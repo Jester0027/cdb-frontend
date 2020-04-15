@@ -1,9 +1,11 @@
 @import '../../../../../styles/variables';
 
 .block {
+  position: relative;
   background: $primaryBlockColor;
   min-height: 300px;
   padding: 20px 0 100px 0;
+  z-index: 1;
 }
 
 h3 {
@@ -12,6 +14,22 @@ h3 {
   text-align: center;
   margin-bottom: 70px;
   font-size: 40px;
+}
+
+.container {
+  z-index: 100;
+  position: relative;
+  margin: auto;
+}
+
+.img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  img {
+    position: absolute;
+    top: -280px;
+  }
 }
 
 .text {
@@ -28,7 +46,7 @@ h3 {
   }
 }
 
-figure {
+.row figure {
   width: 450px;
   height: 450px;
 
@@ -38,5 +56,19 @@ figure {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+figure.paws {
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  height: 80%;
+  z-index: 1;
+  transform: rotate(5deg);
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
