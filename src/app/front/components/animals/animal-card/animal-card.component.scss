@@ -1,0 +1,50 @@
+@import '../../../../../styles/variables';
+
+.card {
+  color: $primaryText;
+
+  &-img-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &-img-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    box-shadow: inset 8px 8px 50px rgba(0, 0, 0, 0.4), inset -8px -8px 50px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 5s;
+  }
+
+  img {
+    height: 300px;
+    object-fit: cover;
+    transition: transform 5s;
+    z-index: 1;
+  }
+
+  h5 {
+    font-weight: bold;
+  }
+
+  a {
+    color: $primaryText;
+    text-decoration: none;
+  }
+}
+
+:host:hover {
+  cursor: pointer;
+
+  .card {
+
+    &-img-background {
+      box-shadow: inset 4px 4px 30px rgba(0, 0, 0, 0.4), inset -4px -4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    img {
+      transform: scale(1.2);
+    }
+  }
+}
