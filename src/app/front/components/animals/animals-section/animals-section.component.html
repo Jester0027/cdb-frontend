@@ -1,1 +1,24 @@
-<p>animals-section works!</p>
+<div class="container">
+  <h1>Les animaux du refuge</h1>
+
+  <div class="row" *ngIf="!isLoading && !error">
+    <div class="animal-col col-4" *ngFor="let animal of animals">
+      <app-animal-card [animal]="animal"></app-animal-card>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isLoading && !error">
+    <app-animal-pagination
+      (changePage)="setLoader()"
+      [meta]="meta"
+    ></app-animal-pagination>
+  </div>
+
+  <div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && error">
+    <p>Une erreur est survenue : {{ error }}</p>
+    <button (click)="clearError()" class="btn btn-danger">Ok</button>
+  </div>
+</div>
