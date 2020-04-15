@@ -1,5 +1,7 @@
 @import '../../../../../styles/variables';
 
+$iconSize: 32px;
+
 .block {
   background: $primaryBlockColor;
   min-height: 300px;
@@ -57,8 +59,13 @@ h3 {
     display: flex;
     align-items: center;
 
+    .icon {
+      width: $iconSize;
+      text-align: center;
+    }
+
     fa-icon {
-      font-size: 32px;
+      font-size: $iconSize;
       color: $darkPrimaryColor;
     }
 
