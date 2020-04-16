@@ -30,9 +30,7 @@ export class AnimalsSectionComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.animalsSub = this.activatedRoute.queryParams
       .pipe(
-        tap(() => {
-          this.isLoading = true;
-        }),
+        tap(() => (this.isLoading = true)),
         switchMap((params) => this.animalsService.fetchAnimals(params.page))
       )
       .subscribe(
