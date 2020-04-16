@@ -11,8 +11,8 @@
         Page précédente
       </a>
     </li>
-    <li *ngFor="let link of links" [ngClass]="{active: meta.currentPage === link.pageNumber}" class="page-item number-page-item">
-      <a class="page-link" [routerLink]="['/animaux']" [queryParams]="link.pageNumber !== 1 ? link.query : {}">{{ link.pageNumber }}</a>
+    <li *ngFor="let page of pages; let i = index" [ngClass]="{active: meta.currentPage === i + 1 }" class="page-item number-page-item">
+      <a class="page-link" [routerLink]="['/animaux']" [queryParams]="i + 1 !== 1 ? { page: i + 1} : {}">{{ i + 1 }}</a>
     </li>
     <li *ngIf="meta.currentPage < meta.maxPages" class="page-item right">
       <a

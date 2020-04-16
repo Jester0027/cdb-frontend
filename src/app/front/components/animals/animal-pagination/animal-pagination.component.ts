@@ -18,6 +18,7 @@ export class AnimalPaginationComponent implements OnInit {
   nextPage: number;
 
   links: { pageNumber: number; query: {} }[] = [];
+  pages: Array<any>;
 
   leftIcon = faAngleDoubleLeft;
   rightIcon = faAngleDoubleRight;
@@ -28,11 +29,7 @@ export class AnimalPaginationComponent implements OnInit {
     this.prevPage = this.meta.currentPage - 1;
     this.nextPage = this.meta.currentPage + 1;
     console.log(this.meta);
-    for (let i = 1; i <= this.meta.maxPages; i++) {
-      this.links.push({ pageNumber: i, query: { page: i } });
-    }
-
-    console.log(this.links);
+    this.pages = new Array(this.meta.maxPages);
   }
 
   changingPage() {
