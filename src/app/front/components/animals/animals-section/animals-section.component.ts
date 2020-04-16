@@ -1,4 +1,4 @@
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -29,7 +29,12 @@ export class AnimalsSectionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isLoading = true;
     this.animalsSub = this.activatedRoute.queryParams
-      .pipe(switchMap((params) => this.animalsService.fetchAnimals(params.page)))
+      .pipe(
+        tap(() => {
+          this.isLoading = true;
+        }),
+        switchMap((params) => this.animalsService.fetchAnimals(params.page))
+      )
       .subscribe(
         (res: PaginatedData<Animal>) => {
           this.isLoading = false;
