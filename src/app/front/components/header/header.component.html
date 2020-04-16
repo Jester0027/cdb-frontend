@@ -1,4 +1,4 @@
-<header [ngClass]="{'transparent': isHomePage && !hasScrolled}">
+<header [ngClass]="{ transparent: isHomePage && !hasScrolled }">
   <div class="container">
     <div id="logo">LOGO</div>
     <nav>
@@ -12,13 +12,14 @@
         <li routerLinkActive="active"><a routerLink="/animaux">Animaux</a></li>
         <li routerLinkActive="active"><a routerLink="#">Évènements</a></li>
         <li routerLinkActive="active">
-          <a routerLink="/contact"
-            >Contact <fa-icon [icon]="dropdown"></fa-icon
-          ></a>
+          <a routerLink="/contact">
+            Contact
+            <fa-icon [icon]="dropdown"></fa-icon>
+          </a>
         </li>
         <li routerLinkActive="active"><a routerLink="#">Nous soutenir</a></li>
       </ul>
     </nav>
   </div>
 </header>
-<div [ngClass]="{'padding': !isHomePage}"></div>
+<div [ngClass]="{ padding: !isHomePage }"></div>
