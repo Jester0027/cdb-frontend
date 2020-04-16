@@ -1,0 +1,23 @@
+@import '../../../../../styles/variables';
+
+:host {
+  width: 100%;
+}
+
+ul {
+  justify-content: center;
+}
+
+li.active {
+  a {
+    background-color: $accentColor;
+    color: $altText;
+    border-color: $accentColor;
+  }
+}
+
+.page-item {
+  a {
+    color: $primaryText;
+  }
+}

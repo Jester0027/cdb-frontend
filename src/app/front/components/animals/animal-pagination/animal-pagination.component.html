@@ -1,22 +1,29 @@
 <div class="animal-pagination">
   <ul class="pagination">
-    <li *ngIf="meta.currentPage > 1" class="page-item">
+    <li *ngIf="meta.currentPage > 1" class="page-item left">
       <a
         class="page-link"
         [routerLink]="['/animaux']"
-        [queryParams]="{ page: prevPage }"
+        [queryParams]="prevPage !== 1 ? { page: prevPage } : {}"
         (click)="changingPage()"
-        >Previous</a
       >
+        <fa-icon [icon]="leftIcon"></fa-icon>
+        Page précédente
+      </a>
     </li>
-    <li *ngIf="meta.currentPage < meta.maxPages" class="page-item">
+    <li *ngFor="let link of links" [ngClass]="{active: meta.currentPage === link.pageNumber}" class="page-item number-page-item">
+      <a class="page-link" [routerLink]="['/animaux']" [queryParams]="link.pageNumber !== 1 ? link.query : {}">{{ link.pageNumber }}</a>
+    </li>
+    <li *ngIf="meta.currentPage < meta.maxPages" class="page-item right">
       <a
-        class="page-link"
+        class="page-link align-baseline"
         [routerLink]="['/animaux']"
         [queryParams]="{ page: nextPage }"
         (click)="changingPage()"
-        >Next</a
       >
+        Page suivante
+        <fa-icon [icon]="rightIcon"></fa-icon>
+      </a>
     </li>
   </ul>
 </div>
