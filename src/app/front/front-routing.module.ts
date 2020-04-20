@@ -7,6 +7,7 @@ import { AnimalsComponent } from './pages/animals/animals.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { FrontComponent } from './front.component';
 import { HomeComponent } from './pages/home/home.component';
+import { EventsPageComponent } from './pages/events-page/events-page.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
         component: AnimalsComponent,
       },
       { path: 'animaux/:id', component: AnimalDetailPageComponent },
+      { path: 'evenements', component: EventsPageComponent },
       { path: '**', component: NotFoundPageComponent },
     ],
   },

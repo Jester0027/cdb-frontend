@@ -23,6 +23,8 @@ import { AnimalDetailPageComponent } from './pages/animal-detail-page/animal-det
 import { AnimalPaginationComponent } from './components/animals/animal-pagination/animal-pagination.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { EventsPageComponent } from './pages/events-page/events-page.component';
+import { EventsSectionComponent } from './components/events/events-section/events-section.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
     AnimalDetailPageComponent,
     AnimalPaginationComponent,
     NotFoundComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    EventsPageComponent,
+    EventsSectionComponent
   ],
   imports: [CommonModule, FrontRoutingModule, FontAwesomeModule, ReactiveFormsModule, SharedModule]
 })
