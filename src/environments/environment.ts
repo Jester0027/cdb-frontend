@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:8000'
+  fbAppId: '',
+  api: 'http://api.etpa8594.odns.fr/index.php'
 };
 
 /*
