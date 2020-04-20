@@ -1,8 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { environment } from './../../environments/environment';
+import { FacebookSeoTagsService } from './services/facebook-seo-tags.service';
 
 @Component({
   selector: 'app-front',
   templateUrl: './front.component.html',
-  styleUrls: ['front.component.scss']
+  styleUrls: ['front.component.scss'],
 })
-export class FrontComponent {}
+export class FrontComponent implements OnInit {
+  constructor(private fbService: FacebookSeoTagsService) {}
+
+  ngOnInit(): void {
+    this.fbService
+      .setUrl('')
+      .setDescription('')
+      .setImage('./assets/images/erda-estremera-unsplash.png')
+      .setTitle('Coeur de Bouviers')
+      .setAppId(environment.fbAppId)
+      .setType('website')
+      .setLocale('fr_BE');
+  }
+}
