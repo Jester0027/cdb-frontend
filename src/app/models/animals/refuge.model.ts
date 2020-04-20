@@ -6,7 +6,7 @@ export interface Refuge {
   slug: string;
   address: string;
   city: string;
-  zipCode: number;
+  zip_code: number;
   coordinates: string;
   description: string;
   animals?: Animal[];

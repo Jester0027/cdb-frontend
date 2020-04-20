@@ -3,12 +3,12 @@ import { EventTheme } from './event-theme.model';
 export interface Event {
   id: number;
   title: string;
-  eventDate: Date;
+  event_date: Date;
   address: string;
   city: string;
-  zipCode: number;
+  zip_code: number;
   coordinates: string;
-  imageUrl: string;
+  image_url: string;
   description: string;
   eventTheme: EventTheme;
 }

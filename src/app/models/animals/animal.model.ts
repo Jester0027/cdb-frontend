@@ -22,7 +22,7 @@ export interface Animal {
   price: number;
   attitude?: string;
   description?: string;
-  animalCategory?: AnimalCategory;
+  animal_category?: AnimalCategory;
   refuge?: Refuge;
   pictures?: Picture[];
 }
