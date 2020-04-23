@@ -1,4 +1,15 @@
 <div class="container">
+  <h1>Contact</h1>
+  <div class="row" *ngIf="errorMessage" >
+    <div class="col-12 alert alert-danger text-center">
+      <p>{{ errorMessage }}</p>
+      <button class="btn btn-danger" (click)="clearError()">Fermer l'erreur</button>
+    </div>
+  </div>
+  <button id="back-button" class="btn btn-primary" *ngIf="animal" (click)="navigateToLastPage()">
+    <fa-icon [icon]="leftArrowIcon"></fa-icon>
+    Retour
+  </button>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="email">Email</label>
@@ -12,6 +23,9 @@
       <label for="content">Message</label>
       <textarea id="content" class="form-control" formControlName="content" placeholder="Message"></textarea>
     </div>
-    <button type="submit" class="btn btn-success">Envoyer</button>
+    <button type="submit" class="btn btn-success">
+      Envoyer
+      <fa-icon [icon]="paperPlaneIcon"></fa-icon>
+    </button>
   </form>
 </div>
