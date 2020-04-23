@@ -33,7 +33,6 @@ export class EventsSectionComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (res: PaginatedData<Event>) => {
-          console.log(res);
           this.isLoading = false;
           this.events = res.data;
           this.meta = res.meta;
@@ -44,6 +43,10 @@ export class EventsSectionComponent implements OnInit, OnDestroy {
           this.router.navigate(['/not-found']);
         }
       );
+  }
+
+  setLoader() {
+    this.isLoading = true;
   }
 
   ngOnDestroy(): void {

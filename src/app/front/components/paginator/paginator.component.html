@@ -3,7 +3,7 @@
     <li *ngIf="meta.currentPage > 1" class="page-item left">
       <a
         class="page-link"
-        [routerLink]="['/animaux']"
+        [routerLink]="route"
         [queryParams]="prevPage !== 1 ? { page: prevPage } : {}"
         (click)="changingPage()"
       >
@@ -12,12 +12,12 @@
       </a>
     </li>
     <li *ngFor="let page of pages; let i = index" [ngClass]="{active: meta.currentPage === i + 1 }" class="page-item number-page-item">
-      <a class="page-link" [routerLink]="['/animaux']" [queryParams]="i + 1 !== 1 ? { page: i + 1} : {}">{{ i + 1 }}</a>
+      <a class="page-link" [routerLink]="route" [queryParams]="i + 1 !== 1 ? { page: i + 1} : {}">{{ i + 1 }}</a>
     </li>
     <li *ngIf="meta.currentPage < meta.maxPages" class="page-item right">
       <a
         class="page-link align-baseline"
-        [routerLink]="['/animaux']"
+        [routerLink]="route"
         [queryParams]="{ page: nextPage }"
         (click)="changingPage()"
       >

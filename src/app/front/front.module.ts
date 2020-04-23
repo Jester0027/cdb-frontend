@@ -20,11 +20,11 @@ import { AnimalCardComponent } from './components/animals/animal-card/animal-car
 import { AnimalsComponent } from './pages/animals/animals.component';
 import { AnimalDetailComponent } from './components/animals/animal-detail/animal-detail.component';
 import { AnimalDetailPageComponent } from './pages/animal-detail-page/animal-detail-page.component';
-import { AnimalPaginationComponent } from './components/animals/animal-pagination/animal-pagination.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventsSectionComponent } from './components/events/events-section/events-section.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -43,12 +43,18 @@ import { EventsSectionComponent } from './components/events/events-section/event
     AnimalCardComponent,
     AnimalDetailComponent,
     AnimalDetailPageComponent,
-    AnimalPaginationComponent,
     NotFoundComponent,
     NotFoundPageComponent,
     EventsPageComponent,
-    EventsSectionComponent
+    EventsSectionComponent,
+    PaginatorComponent,
   ],
-  imports: [CommonModule, FrontRoutingModule, FontAwesomeModule, ReactiveFormsModule, SharedModule]
+  imports: [
+    CommonModule,
+    FrontRoutingModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
 export class FrontModule {}

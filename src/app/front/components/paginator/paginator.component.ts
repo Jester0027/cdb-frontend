@@ -4,15 +4,16 @@ import {
   faAngleDoubleRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Meta } from './../../../../models/paginated-data.model';
+import { Meta } from './../../../models/paginated-data.model';
 
 @Component({
-  selector: 'app-animal-pagination',
-  templateUrl: './animal-pagination.component.html',
-  styleUrls: ['./animal-pagination.component.scss'],
+  selector: 'app-paginator',
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.scss']
 })
-export class AnimalPaginationComponent implements OnInit {
+export class PaginatorComponent implements OnInit {
   @Input() meta: Meta;
+  @Input() route: string[];
   @Output() changePage = new EventEmitter();
   prevPage: number;
   nextPage: number;
@@ -28,11 +29,11 @@ export class AnimalPaginationComponent implements OnInit {
   ngOnInit(): void {
     this.prevPage = this.meta.currentPage - 1;
     this.nextPage = this.meta.currentPage + 1;
-    console.log(this.meta);
     this.pages = new Array(this.meta.maxPages);
   }
 
   changingPage() {
     this.changePage.emit();
   }
+
 }
