@@ -25,6 +25,8 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventsSectionComponent } from './components/events/events-section/events-section.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
+import { EventDetailPageComponent } from './pages/event-detail-page/event-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     EventsPageComponent,
     EventsSectionComponent,
     PaginatorComponent,
+    EventDetailComponent,
+    EventDetailPageComponent,
   ],
   imports: [
     CommonModule,
