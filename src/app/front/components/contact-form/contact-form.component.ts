@@ -1,9 +1,12 @@
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { faArrowCircleLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowCircleLeft,
+  faPaperPlane,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { AnimalsService } from './../../../services/animals.service';
 import { Animal } from './../../../models/animals/animal.model';
@@ -23,9 +26,20 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   errorMessage: string = null;
 
   form = new FormGroup({
-    email: new FormControl(''),
-    subject: new FormControl(''),
-    content: new FormControl(''),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.maxLength(254),
+    ]),
+    subject: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(70),
+    ]),
+    content: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
   });
 
   constructor(
@@ -41,6 +55,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
         this.animal = { name: params.animal, id: params.id };
       }
     });
+    console.log(this.form);
 
     if (this.animal) {
       this.animalsSub = this.animalsService
@@ -55,7 +70,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
             this.form.controls.subject.disable();
           },
           (err) => {
-            this.setError('Une erreur inconnue est survenue');
+            this.setError(`Une erreur inconnue est survenue`);
           }
         );
     }
@@ -70,6 +85,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     this.subject = null;
     this.router.navigate(['/contact']);
     this.errorMessage = msg;
+    throw new Error(msg);
   }
 
   ngOnDestroy(): void {
