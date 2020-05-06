@@ -1,0 +1,17 @@
+<div class="login">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Espace administratif</h1>
+    <mat-form-field>
+      <mat-label>Pseudo</mat-label>
+      <input formControlName="username" type="email" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mot de passe</mat-label>
+      <input formControlName="password" type="password" matInput>
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="primary">Se connecter</button>
+    <p>{{ isLoading }}</p>
+  </form>
+  
+</div>

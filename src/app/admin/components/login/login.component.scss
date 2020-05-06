@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+}
+
+.login {
+  width: 300px;
+  margin: 20vh auto;
+  background-color: rgb(243, 243, 243);
+  padding: 10px 20px;
+
+  mat-form-field {
+    width: 100%;
+    margin: auto;
+    input {
+      width: 100%;
+    }
+  }
+
+  button {
+    margin: 10px auto;
+  }
+}
