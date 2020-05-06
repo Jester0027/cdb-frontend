@@ -7,7 +7,7 @@ enum Property {
   TITLE = 'og:title',
   DESCRIPTION = 'og:description',
   IMAGE = 'og:image',
-  APP_ID = 'og:app_id',
+  APP_ID = 'fb:app_id',
   LOCALE = 'og:locale'
 }
 
