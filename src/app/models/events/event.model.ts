@@ -1,7 +1,7 @@
 import { EventTheme } from './event-theme.model';
 
 export interface Event {
-  id: number;
+  id?: number;
   title: string;
   event_date: Date;
   address: string;

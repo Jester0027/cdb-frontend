@@ -1,7 +1,7 @@
 import { Animal } from './animal.model';
 
 export interface Refuge {
-  id: number;
+  id?: number;
   name: string;
   slug: string;
   address: string;

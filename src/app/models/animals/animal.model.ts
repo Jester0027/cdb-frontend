@@ -3,7 +3,7 @@ import { Refuge } from './refuge.model';
 import { AnimalCategory } from './animal-category.model';
 
 export interface Animal {
-  id: number;
+  id?: number;
   name: string;
   race: string;
   /**

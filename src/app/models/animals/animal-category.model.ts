@@ -1,7 +1,7 @@
 import { Animal } from './animal.model';
 
 export interface AnimalCategory {
-  id: number;
+  id?: number;
   name: string;
   slug: string;
   animals?: Animal[];
