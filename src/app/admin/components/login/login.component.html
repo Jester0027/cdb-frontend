@@ -1,6 +1,7 @@
 <div class="login">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1>Espace administratif</h1>
+    <p style="color: red; text-align: center;" *ngIf="error" >Identifiants incorrects</p>
     <mat-form-field>
       <mat-label>Pseudo</mat-label>
       <input formControlName="username" type="email" matInput>
@@ -10,8 +11,8 @@
       <input formControlName="password" type="password" matInput>
     </mat-form-field>
 
-    <button type="submit" mat-flat-button color="primary">Se connecter</button>
-    <p>{{ isLoading }}</p>
+    <button *ngIf="!isLoading" type="submit" mat-flat-button color="primary">Se connecter</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
   
 </div>
