@@ -1,3 +1,4 @@
+import { PaginatedData } from './../paginated-data.model';
 import { Animal } from './animal.model';
 
 export interface AnimalCategory {
@@ -5,4 +6,5 @@ export interface AnimalCategory {
   name: string;
   slug: string;
   animals?: Animal[];
+  paginated_animals?: PaginatedData<Animal>;
 }

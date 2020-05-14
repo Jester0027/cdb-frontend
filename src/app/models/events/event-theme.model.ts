@@ -1,3 +1,4 @@
+import { PaginatedData } from './../paginated-data.model';
 import { Event } from './event.model';
 
 export interface EventTheme {
@@ -6,4 +7,5 @@ export interface EventTheme {
   slug: string;
   description?: string;
   event?: Event[];
+  paginated_events?: PaginatedData<Event>;
 }

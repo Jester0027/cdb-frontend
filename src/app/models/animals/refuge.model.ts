@@ -1,3 +1,4 @@
+import { PaginatedData } from './../paginated-data.model';
 import { Animal } from './animal.model';
 
 export interface Refuge {
@@ -10,4 +11,5 @@ export interface Refuge {
   coordinates: string;
   description: string;
   animals?: Animal[];
+  paginated_animals?: PaginatedData<Animal>;
 }
