@@ -3,7 +3,7 @@ import { Animal } from './animal.model';
 
 export interface AnimalCategory {
   id?: number;
-  name: string;
+  name?: string;
   slug: string;
   animals?: Animal[];
   paginated_animals?: PaginatedData<Animal>;
