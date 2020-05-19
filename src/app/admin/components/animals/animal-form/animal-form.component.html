@@ -1,0 +1,97 @@
+<div class="animal-form">
+  <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="form-container">
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('name')">
+        Entrez le nom de l'animal, entre 2 et 255 caractères
+      </p>
+      <div *ngIf="animalCategories" formGroupName="animal_category">
+        <mat-form-field>
+          <mat-label>Catégorie</mat-label>
+          <mat-select matInput formControlName="slug">
+            <mat-option
+              *ngFor="let category of animalCategories"
+              [value]="category.slug"
+              >{{ category.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <p style="color: red;" *ngIf="invalid('animal_category.slug')">
+          Renseignez la catégorie de l'animal
+        </p>
+      </div>
+      <mat-form-field>
+        <mat-label>Race</mat-label>
+        <input matInput formControlName="race" />
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('race')">
+        Entrez la race de l'animal, entre 2 et 255 caractères
+      </p>
+      <mat-form-field>
+        <mat-label>Masse</mat-label>
+        <input matInput formControlName="weight" />
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('weight')">
+        Renseignez la masse de l'animal
+      </p>
+      <mat-form-field>
+        <mat-label>Taille</mat-label>
+        <input matInput formControlName="height" />
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('height')">
+        Renseignez la taille de l'animal
+      </p>
+      <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput formControlName="age" />
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('age')">
+        Renseignez l'age de l'animal
+      </p>
+      <mat-form-field>
+        <mat-label>Sexe</mat-label>
+        <mat-select matInput formControlName="gender">
+          <mat-option value="true">Male</mat-option>
+          <mat-option value="false">femelle</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('gender')">
+        Renseignez le sexe de l'animal
+      </p>
+      <mat-form-field>
+        <mat-label>Attitude</mat-label>
+        <textarea matInput formControlName="attitude"></textarea>
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('attitude')">
+        Écrivez l'attidude de l'animal, entre 10 et 2550 caractères
+      </p>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <p style="color: red;" *ngIf="invalid('description')">
+        Écrivez la description de l'animal, entre 10 et 2550 caractères
+      </p>
+      <div *ngIf="refuges" formGroupName="refuge">
+        <mat-form-field>
+          <mat-label>Refuge</mat-label>
+          <mat-select matInput formControlName="slug">
+            <mat-option *ngFor="let refuge of refuges" [value]="refuge.slug">{{
+              refuge.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p style="color: red;" *ngIf="invalid('refuge.slug')">
+          Renseignez le refuge où est l'animal
+        </p>
+      </div>
+      <button [disabled]="form.invalid" mat-button type="submit">
+        {{ editMode ? 'Modifier' : "Ajouter" }}
+      </button>
+    </div>
+  </form>
+  <mat-spinner style="margin: auto;" *ngIf="isLoading"></mat-spinner>
+</div>

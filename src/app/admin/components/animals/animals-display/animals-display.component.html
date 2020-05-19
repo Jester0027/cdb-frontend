@@ -1,0 +1,71 @@
+<div class="animals-display">
+  <div class="buttons">
+    <button [routerLink]="['ajouter']" mat-raised-button>
+      Ajouter un animal
+      <mat-icon inline=true>add_circle</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!isLoading && !error">
+    <table mat-table [dataSource]="animals">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>identifiant</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="race">
+        <th mat-header-cell *matHeaderCellDef>Race</th>
+        <td mat-cell *matCellDef="let element">{{ element.race }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            [routerLink]="['editer', element.id]"
+            class="actions"
+            mat-flat-button
+            color="primary"
+          >
+            Modifier
+            <mat-icon inline=true>create</mat-icon>
+          </button>
+          <button
+            [routerLink]="['photos', element.id]"
+            class="actions"
+            mat-stroked-button
+            color="primary"
+          >
+            Photos
+            <mat-icon inline=true>insert_photo</mat-icon>
+          </button>
+          <button class="actions" mat-flat-button color="warn">
+            Supprimer
+            <mat-icon inline=true>clear</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="['id', 'name', 'race', 'actions']"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['id', 'name', 'race', 'actions']"
+      ></tr>
+    </table>
+    <mat-paginator
+      [length]="meta.totalItems"
+      [pageSize]="10"
+      [pageIndex]="meta.currentPage - 1"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+    <div>
+      {{ meta | json }}
+    </div>
+  </div>
+  <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
+</div>
