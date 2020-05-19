@@ -16,7 +16,27 @@
   z-index: 1;
 }
 
-button {
+.main-logout-button {
   position: absolute;
-  right: 25px;
+  right: 0px;
+
+  mat-icon {
+    margin-left: 10px;
+  }
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .main-logout-button {
+    span {
+      display: none;
+    }
+
+    mat-icon {
+      margin-left: 0;
+    }
+  }
 }

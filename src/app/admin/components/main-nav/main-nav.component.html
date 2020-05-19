@@ -1,14 +1,27 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <mat-toolbar><a [routerLink]="['/admin']">Menu</a></mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/admin', 'animaux']">Animaux</a>
-      <a mat-list-item [routerLink]="['/admin', 'categories']">Catégories d'animaux</a>
+      <a mat-list-item [routerLink]="['/admin', 'categories']"
+        >Catégories d'animaux</a
+      >
       <a mat-list-item [routerLink]="['/admin', 'refuges']">Refuges</a>
       <a mat-list-item [routerLink]="['/admin', 'evenements']">Évènements</a>
+      <a
+        mat-list-item
+        *ngIf="isAdmin"
+        [routerLink]="['/admin', 'utilisateurs']"
+      >
+        Utilisateurs
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -18,11 +31,20 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>{{ title }}</span>
-      <button mat-button color="accent" (click)="logout()">Se déconnecter</button>
+      <button
+        class="main-logout-button logout"
+        mat-button
+        color="accent"
+        (click)="logout()"
+      >
+        <span>Se déconnecter</span>
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content>
