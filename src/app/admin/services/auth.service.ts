@@ -1,12 +1,12 @@
-import { tap, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { tap, catchError, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 import { environment } from './../../../environments/environment';
-import { User, UserRoles } from './../../models/user.model';
+import { User } from './../../models/user.model';
 
 interface TokenData {
   token: string;
@@ -42,12 +42,29 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       if (
         localStorage.getItem('expiration') &&
-        +localStorage.getItem('expiration') * 1000 <= Date.now()
+        +localStorage.getItem('expiration') <= Math.round(Date.now() / 1000)
       ) {
         return this.refreshToken();
       }
       token = token ?? window.localStorage.getItem('token');
     }
+    return this.postLogin(token).pipe(catchError(() => this.refreshToken()));
+  }
+
+  private refreshToken() {
+    return this.http
+      .post<TokenData>(`${environment.api}/api/token/refresh`, {
+        refreshToken: window.localStorage.getItem('refreshToken'),
+      })
+      .pipe(
+        switchMap((res: TokenData) => {
+          this.storeData(res);
+          return this.postLogin(res.token);
+        })
+      );
+  }
+
+  private postLogin(token: string = window.localStorage.getItem('token')) {
     return this.http
       .post<User>(
         `${environment.api}/api/login`,
@@ -57,27 +74,16 @@ export class AuthService {
             Authorization: `Bearer ${token}`,
           }),
         }
-      );
+      ).pipe(tap((user: User) => {
+        window.localStorage.setItem('userData', JSON.stringify(user));
+      }));
   }
 
-  private refreshToken() {
-    return this.http
-      .post<TokenData>(`${environment.api}/api/token/refresh`, {
-        refreshToken: window.localStorage.getItem('refreshToken'),
-      })
-      .pipe(
-        tap((res: TokenData) => {
-          this.storeData(res);
-        })
-      );
-  }
-
-  private getUserRoles(token: string = null): UserRoles[] {
-    const data = token
-      ? token.split('.')[1]
-      : window.localStorage.getItem('token').split('.')[1];
-    const user = JSON.parse(atob(data));
-    return user.roles;
+  getUser(): User {
+    if (isPlatformBrowser(this.platformId)) {
+      return JSON.parse(window.localStorage.getItem('userData'));
+    }
+    return null;
   }
 
   private getExpirationDate(token: string): string {
@@ -99,6 +105,7 @@ export class AuthService {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('refreshToken');
     window.localStorage.removeItem('expiration');
+    window.localStorage.removeItem('userData');
     this.router.navigate(['/admin', 'login']);
   }
 
