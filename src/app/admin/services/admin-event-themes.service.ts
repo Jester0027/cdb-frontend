@@ -1,3 +1,5 @@
+import { environment } from './../../../environments/environment';
+import { switchMap } from 'rxjs/operators';
 import { EventTheme } from './../../models/events/event-theme.model';
 import { AuthService } from './auth.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -21,9 +23,38 @@ export class AdminEventThemesService {
     return updatedOptions;
   }
 
-  addEventTheme(theme: EventTheme) {}
+  addEventTheme(theme: EventTheme) {
+    return this.authService.checkCredentials().pipe(
+      switchMap(() => {
+        return this.http.post(
+          `${environment.api}/api/admin/event_themes`,
+          theme,
+          this.requestOptions()
+        );
+      })
+    );
+  }
 
-  updateEventTheme(id: number, theme: EventTheme) {}
+  updateEventTheme(id: number, theme: EventTheme) {
+    return this.authService.checkCredentials().pipe(
+      switchMap(() => {
+        return this.http.put(
+          `${environment.api}/api/admin/event_themes/${id}`,
+          theme,
+          this.requestOptions()
+        );
+      })
+    );
+  }
 
-  deleteEventTheme(id: number) {}
+  deleteEventTheme(id: number) {
+    return this.authService.checkCredentials().pipe(
+      switchMap(() => {
+        return this.http.delete(
+          `${environment.api}/api/admin/event_themes/${id}`,
+          this.requestOptions()
+        );
+      })
+    );
+  }
 }
