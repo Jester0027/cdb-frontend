@@ -1,5 +1,7 @@
-import { Animal } from '../../../../models/animals/animal.model';
 import { Component, OnInit, Input } from '@angular/core';
+
+import { environment } from './../../../../../environments/environment';
+import { Animal } from '../../../../models/animals/animal.model';
 
 @Component({
   selector: 'app-animal-card',
@@ -15,8 +17,22 @@ export class AnimalCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.image = this.animal.pictures[0] ? this.animal.pictures[0].picture : '../../../../../assets/images/default-photo.png';
     this.description = `Photo de ${this.animal.name}`;
     this.link = `/animaux/${this.animal.id}`;
+  }
+
+  getSrc(name: string) {
+    if (!name) {
+      return '../../../../../assets/images/default-photo.png';
+    }
+
+    if (name.startsWith('http') || name.startsWith('https')) {
+      return name;
+    }
+
+    return `${environment.api.replace(
+      '/index.php',
+      ''
+    )}/images/animal_pictures/${name}`;
   }
 }

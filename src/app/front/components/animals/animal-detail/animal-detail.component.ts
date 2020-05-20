@@ -1,8 +1,15 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
+import { environment } from './../../../../../environments/environment';
 import { Animal } from './../../../../models/animals/animal.model';
 import { AnimalsService } from './../../../../services/animals.service';
 
@@ -34,22 +41,40 @@ export class AnimalDetailComponent implements OnInit, OnDestroy {
           return this.animalsService.fetchOneAnimal(params.id);
         })
       )
-      .subscribe((animal: Animal) => {
-        this.isLoading = false;
-        this.animal = animal;
-        this.loaded.emit(animal);
+      .subscribe(
+        (animal: Animal) => {
+          this.isLoading = false;
+          this.animal = animal;
+          this.loaded.emit(animal);
+          this.imageDescription = `Photo de ${this.animal.name}`;
+        },
+        (err) => {
+          this.isLoading = false;
+          this.error = err.message;
+          this.router.navigate(['/not-found']);
+        }
+      );
+  }
 
-        this.imageUrl = this.animal.pictures[0] ? this.animal.pictures[0].picture : '../../../../../assets/images/default-photo.png';
-        this.imageDescription = `Photo de ${this.animal.name}`;
-      }, err => {
-        this.isLoading = false;
-        this.error = err.message;
-        this.router.navigate(['/not-found']);
-      });
+  getSrc(name: string) {
+    if (!name) {
+      return '../../../../../assets/images/default-photo.png';
+    }
+
+    if (name.startsWith('http') || name.startsWith('https')) {
+      return name;
+    }
+
+    return `${environment.api.replace(
+      '/index.php',
+      ''
+    )}/images/animal_pictures/${name}`;
   }
 
   ngOnDestroy(): void {
-    this.animalSub.unsubscribe();
+    if (this.animalSub) {
+      this.animalSub.unsubscribe();
+    }
   }
 
   clearError() {

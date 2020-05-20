@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="image" *ngIf="animal.pictures.length <= 1">
-            <img [src]="imageUrl" [alt]="imageDescription" />
+            <img [src]="getSrc(animal.pictures[0] ? animal.pictures[0].picture : null)" [alt]="imageDescription" />
           </div>
           <div
             id="animalCarousel"
@@ -20,12 +20,12 @@
               <div
                 class="carousel-item"
                 [ngClass]="{ active: image === animal.pictures[0] }"
-                *ngFor="let image of animal.pictures"
+                *ngFor="let image of animal.pictures; let i = index"
               >
                 <img
                   class="d-block w-100"
-                  [src]="image.picture"
-                  alt="First slide"
+                  [src]="getSrc(image.picture)"
+                  [alt]="imageDescription + ' numéro ' + i"
                 />
               </div>
             </div>

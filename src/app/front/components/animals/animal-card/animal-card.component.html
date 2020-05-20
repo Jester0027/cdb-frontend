@@ -3,7 +3,7 @@
     <a [routerLink]="[link]">
       <div class="card-img-container">
         <div class="card-img-background"></div>
-        <img [src]="image" [alt]="description" class="card-img-top">
+        <img [src]="getSrc(animal.pictures[0] ? animal.pictures[0].picture : null)" [alt]="description" class="card-img-top">
       </div>
       <div class="card-body">
         <h5 class="card-title text-center">{{ animal.name }}</h5>
