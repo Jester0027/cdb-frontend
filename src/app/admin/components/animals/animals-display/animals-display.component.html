@@ -2,7 +2,7 @@
   <div class="buttons">
     <button [routerLink]="['ajouter']" mat-raised-button>
       Ajouter un animal
-      <mat-icon inline=true>add_circle</mat-icon>
+      <mat-icon inline="true">add_circle</mat-icon>
     </button>
   </div>
   <div *ngIf="!isLoading && !error">
@@ -30,7 +30,7 @@
             color="primary"
           >
             Modifier
-            <mat-icon inline=true>create</mat-icon>
+            <mat-icon inline="true">create</mat-icon>
           </button>
           <button
             [routerLink]="['photos', element.id]"
@@ -38,12 +38,12 @@
             mat-stroked-button
             color="primary"
           >
-            Photos
-            <mat-icon inline=true>insert_photo</mat-icon>
+            Photos ({{ element.pictures.length }})
+            <mat-icon inline="true">insert_photo</mat-icon>
           </button>
           <button class="actions" mat-flat-button color="warn">
             Supprimer
-            <mat-icon inline=true>clear</mat-icon>
+            <mat-icon inline="true">clear</mat-icon>
           </button>
         </td>
       </ng-container>

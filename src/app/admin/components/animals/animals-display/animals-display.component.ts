@@ -1,11 +1,12 @@
 import { tap, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
+
 import { PaginatedData, Meta } from './../../../../models/paginated-data.model';
 import { Subscription } from 'rxjs';
 import { Animal } from './../../../../models/animals/animal.model';
 import { AnimalsService } from './../../../../services/animals.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-animals-display',
