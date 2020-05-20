@@ -1,7 +1,3 @@
-import { environment } from './../../../environments/environment';
-import { switchMap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Refuge } from './../../models/animals/refuge.model';
