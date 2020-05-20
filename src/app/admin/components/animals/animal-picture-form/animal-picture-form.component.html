@@ -1,0 +1,33 @@
+<div class="animal-picture-form">
+  <div>
+    <div
+      class="custom-dropzone"
+      ngx-dropzone
+      [accept]="'image/*'"
+      (change)="onSelect($event)"
+    >
+      <ngx-dropzone-label>
+        <div>
+          <h2>Glissez les photos ou cliquez ici</h2>
+        </div>
+      </ngx-dropzone-label>
+      <ngx-dropzone-image-preview
+        ngProjectAs="ngx-dropzone-preview"
+        *ngFor="let f of files"
+        [file]="f"
+        [removable]="true"
+        (removed)="onRemove(f)"
+      >
+      </ngx-dropzone-image-preview>
+    </div>
+    <button (click)="onSubmit()">Envoyer</button>
+  </div>
+  <div class="pictures" *ngIf="pictures">
+    <figure *ngFor="let pic of pictures" (click)="deletePicture(pic.id)">
+      <img [src]="getSrc(pic.picture)" alt="">
+    </figure>
+  </div>
+  <div *ngIf="pictures.length <= 0">
+    <p style="text-align: center; font-size: 28px;">Aucune photo</p>
+  </div>
+</div>

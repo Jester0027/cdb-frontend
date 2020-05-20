@@ -1,0 +1,38 @@
+.pictures {
+  display: flex;
+
+  figure {
+    width: 100px;
+    height: 100px;
+    margin: 25px;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      transition: background-color 400ms;
+    }
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  figure:hover {
+
+    &::after {
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      content: 'SUPPRIMER';
+      color: white;
+    }
+  }
+}

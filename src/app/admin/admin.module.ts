@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { SharedModule } from './../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -30,6 +31,8 @@ import { AnimalsDisplayComponent } from './components/animals/animals-display/an
 import { NewAnimalComponent } from './pages/new-animal/new-animal.component';
 import { EditAnimalComponent } from './pages/edit-animal/edit-animal.component';
 import { AnimalFormComponent } from './components/animals/animal-form/animal-form.component';
+import { AnimalPicturePageComponent } from './pages/animal-picture-page/animal-picture-page.component';
+import { AnimalPictureFormComponent } from './components/animals/animal-picture-form/animal-picture-form.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { AnimalFormComponent } from './components/animals/animal-form/animal-for
     NewAnimalComponent,
     EditAnimalComponent,
     AnimalFormComponent,
+    AnimalPicturePageComponent,
+    AnimalPictureFormComponent,
   ],
   imports: [
     CommonModule,
@@ -64,7 +69,8 @@ import { AnimalFormComponent } from './components/animals/animal-form/animal-for
     MatInputModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    NgxDropzoneModule,
   ],
   providers: [],
 })
