@@ -60,7 +60,7 @@ export class AdminAnimalsService {
     );
   }
 
-  addPictures(animalId: number = null, files: FileList) {
+  addPictures(animalId: number = null, files: FileList | File[]) {
     const formData: FormData = new FormData();
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < files.length; i++) {
