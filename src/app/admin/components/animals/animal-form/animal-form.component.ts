@@ -142,7 +142,7 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
     };
     if (this.editMode) {
       this.adminAnimalsSub = this.adminAnimalsService
-        .updateAnimal(this.editedAnimal.id, data)
+        .update(this.editedAnimal.id, data)
         .subscribe(
           () => {
             this.router.navigate(['/admin', 'animaux']);
@@ -152,7 +152,7 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
           }
         );
     } else {
-      this.adminAnimalsSub = this.adminAnimalsService.addAnimal(data).subscribe(
+      this.adminAnimalsSub = this.adminAnimalsService.add(data).subscribe(
         () => {
           this.router.navigate(['/admin', 'animaux']);
         },

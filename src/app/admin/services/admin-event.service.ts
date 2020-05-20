@@ -6,59 +6,13 @@ import { Injectable } from '@angular/core';
 import { Event } from './../../models/events/event.model';
 import { AuthService } from './auth.service';
 import { environment } from './../../../environments/environment';
+import { AbstractCrudService } from './abstract-crud.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminEventService {
-  constructor(private http: HttpClient, private authService: AuthService) {}
-
-  private requestOptions(options = {}) {
-    const token = window.localStorage.getItem('token');
-    const headers = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      }),
-    };
-
-    const updatedOptions = { ...headers, ...options };
-    return updatedOptions;
-  }
-
-  addEvent(event: Event): Observable<any> {
-    return this.authService.checkCredentials().pipe(
-      switchMap(() => {
-        return this.http.post(
-          `${environment.api}/api/admin/events`,
-          event,
-          this.requestOptions()
-        );
-      })
-    );
-  }
-
-  updateEvent(id: number, event: Event): Observable<any> {
-    return this.authService.checkCredentials().pipe(
-      switchMap(() => {
-        return this.http.put(
-          `${environment.api}/api/admin/events/${id}`,
-          event,
-          this.requestOptions()
-        );
-      })
-    );
-  }
-
-  deleteEvent(id: number): Observable<any> {
-    return this.authService.checkCredentials().pipe(
-      switchMap(() => {
-        return this.http.delete(
-          `${environment.api}/api/admin/events/${id}`,
-          this.requestOptions()
-        );
-      })
-    );
-  }
+export class AdminEventService extends AbstractCrudService<Event> {
+  protected route = 'events';
 
   addPicture(id: number, file: File) {
     const formData = new FormData();
