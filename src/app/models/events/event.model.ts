@@ -10,5 +10,5 @@ export interface Event {
   coordinates: string;
   image_url: string;
   description: string;
-  eventTheme: EventTheme;
+  event_theme: EventTheme;
 }
