@@ -41,7 +41,7 @@
             Photos ({{ element.pictures.length }})
             <mat-icon inline="true">insert_photo</mat-icon>
           </button>
-          <button class="actions" mat-flat-button color="warn">
+          <button (click)="openDeleteDialog(element.id, element.name)"  class="actions" mat-flat-button color="warn">
             Supprimer
             <mat-icon inline="true">clear</mat-icon>
           </button>
@@ -63,9 +63,6 @@
       [pageIndex]="meta.currentPage - 1"
       (page)="onPageChange($event)"
     ></mat-paginator>
-    <div>
-      {{ meta | json }}
-    </div>
   </div>
   <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
 </div>
