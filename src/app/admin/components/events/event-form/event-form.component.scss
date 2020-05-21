@@ -1,0 +1,22 @@
+.form-container {
+  width: 60%;
+  margin: 25px auto;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.address {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+
+  div {
+    width: 48%;
+  }
+}
+
+agm-map {
+  height: 100%;
+}

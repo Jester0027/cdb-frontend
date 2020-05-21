@@ -1,0 +1,56 @@
+<div class="events-display">
+  <div class="buttons">
+    <button [routerLink]="['ajouter']" mat-raised-button>
+      Ajouter un évènement
+      <mat-icon inline="true">add_circle</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!isLoading && !error">
+    <table mat-table [dataSource]="events">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>identifiant</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            [routerLink]="['editer', element.id]"
+            class="actions"
+            mat-flat-button
+            color="primary"
+          >
+            Modifier
+            <mat-icon inline="true">create</mat-icon>
+          </button>
+          <button (click)="openDeleteDialog(element.id, element.title)"  class="actions" mat-flat-button color="warn">
+            Supprimer
+            <mat-icon inline="true">clear</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="['id', 'name', 'actions']"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['id', 'name', 'actions']"
+      ></tr>
+    </table>
+    <mat-paginator
+      [length]="meta.totalItems"
+      [pageSize]="10"
+      [pageIndex]="meta.currentPage - 1"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+  </div>
+  <mat-spinner *ngIf="isLoading && !error" style="margin: auto;"></mat-spinner>
+  <p *ngIf="!isLoading && error" style="color: red;">{{ error }}</p>
+</div>
