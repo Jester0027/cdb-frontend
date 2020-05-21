@@ -1,0 +1,9 @@
+<div class="delete-dialog">
+  <p>
+    Etes vous sur de vouloir supprimer : <span style="font-weight: bold;">{{ data.name }}</span> ?
+  </p>
+  <div class="actions">
+    <button mat-raised-button color="warn" [mat-dialog-close]="true" (click)="delete()">Confirmer</button>
+    <button mat-stroked-button mat-dialog-close>Annuler</button>
+  </div>
+</div>
