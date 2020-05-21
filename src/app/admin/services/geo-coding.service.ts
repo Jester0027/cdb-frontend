@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -29,7 +29,7 @@ export class GeoCodingService {
     return this.http
       .get(apiLink)
       .pipe(
-        map((res: GeoCode[]) => of({ latitude: res[0].lat, longitude: res[0].lon }))
+        switchMap((res: GeoCode[]) => of({ latitude: res[0].lat, longitude: res[0].lon }))
       );
   }
 }
