@@ -5,21 +5,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnimalCategoriesService {
   constructor(private http: HttpClient) {}
 
-  fetchCategories(
-    page: number = null
-  ): Observable<AnimalCategory[]> {
-    const options = page
-      ? { params: new HttpParams().set('page', page.toString()) }
-      : {};
-
+  fetchCategories(): Observable<AnimalCategory[]> {
     return this.http.get<AnimalCategory[]>(
-      `${environment.api}/api/animal_categories`,
-      options
+      `${environment.api}/api/animal_categories`
     );
   }
 
