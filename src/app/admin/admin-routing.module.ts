@@ -1,3 +1,5 @@
+import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
+import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -27,6 +29,8 @@ const routes: Routes = [
       { path: 'animaux/editer/:id', component: EditAnimalComponent },
       { path: 'animaux/photos/:id', component: AnimalPicturePageComponent },
       { path: 'evenements', component: EventsPageComponent },
+      { path: 'evenements/ajouter', component: NewEventPageComponent },
+      { path: 'evenements/editer/:id', component: EditEventPageComponent },
       { path: 'categories', component: AnimalCategoriesPageComponent },
       { path: 'refuges', component: RefugesPageComponent },
       { path: '**', component: NotFoundPageComponent },

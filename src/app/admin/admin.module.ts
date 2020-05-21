@@ -1,6 +1,7 @@
+import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +14,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { SharedModule } from './../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -33,6 +39,11 @@ import { EditAnimalComponent } from './pages/edit-animal/edit-animal.component';
 import { AnimalFormComponent } from './components/animals/animal-form/animal-form.component';
 import { AnimalPicturePageComponent } from './pages/animal-picture-page/animal-picture-page.component';
 import { AnimalPictureFormComponent } from './components/animals/animal-picture-form/animal-picture-form.component';
+import { EventsDisplayComponent } from './components/events/events-display/events-display.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { EventFormComponent } from './components/events/event-form/event-form.component';
+import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
+import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +63,11 @@ import { AnimalPictureFormComponent } from './components/animals/animal-picture-
     AnimalFormComponent,
     AnimalPicturePageComponent,
     AnimalPictureFormComponent,
+    EventsDisplayComponent,
+    DeleteDialogComponent,
+    EventFormComponent,
+    NewEventPageComponent,
+    EditEventPageComponent,
   ],
   imports: [
     CommonModule,
@@ -71,7 +87,13 @@ import { AnimalPictureFormComponent } from './components/animals/animal-picture-
     MatPaginatorModule,
     MatTableModule,
     NgxDropzoneModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    MatGridListModule,
+    AgmCoreModule,
   ],
-  providers: [],
+  providers: [DatePipe],
 })
 export class AdminModule {}
