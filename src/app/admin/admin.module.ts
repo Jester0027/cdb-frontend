@@ -44,6 +44,10 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 import { EventFormComponent } from './components/events/event-form/event-form.component';
 import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
 import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
+import { AnimalCategoriesSectionComponent } from './components/animal-categories/animal-categories-section/animal-categories-section.component';
+import { AnimalCategoryFormComponent } from './components/animal-categories/animal-category-form/animal-category-form.component';
+import { NewAnimalCategoryPageComponent } from './pages/new-animal-category-page/new-animal-category-page.component';
+import { EditAnimalCategoryPageComponent } from './pages/edit-animal-category-page/edit-animal-category-page.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,10 @@ import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.
     EventFormComponent,
     NewEventPageComponent,
     EditEventPageComponent,
+    AnimalCategoriesSectionComponent,
+    AnimalCategoryFormComponent,
+    NewAnimalCategoryPageComponent,
+    EditAnimalCategoryPageComponent,
   ],
   imports: [
     CommonModule,

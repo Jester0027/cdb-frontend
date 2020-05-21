@@ -1,5 +1,3 @@
-import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
-import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,6 +13,10 @@ import { AdminComponent } from './admin.component';
 import { AnimalsPageComponent } from './pages/animals-page/animals-page.component';
 import { AnimalPicturePageComponent } from './pages/animal-picture-page/animal-picture-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { EditAnimalCategoryPageComponent } from './pages/edit-animal-category-page/edit-animal-category-page.component';
+import { NewAnimalCategoryPageComponent } from './pages/new-animal-category-page/new-animal-category-page.component';
+import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
+import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -32,6 +34,8 @@ const routes: Routes = [
       { path: 'evenements/ajouter', component: NewEventPageComponent },
       { path: 'evenements/editer/:id', component: EditEventPageComponent },
       { path: 'categories', component: AnimalCategoriesPageComponent },
+      { path: 'categories/ajouter', component: NewAnimalCategoryPageComponent },
+      { path: 'categories/editer/:id', component: EditAnimalCategoryPageComponent },
       { path: 'refuges', component: RefugesPageComponent },
       { path: '**', component: NotFoundPageComponent },
     ],
