@@ -6,8 +6,18 @@ body {
   height: 100%;
 }
 
-body {
+.admin {
+  font-family: 'Roboto', sans-serif;
+  button:focus {
+    outline: none;
+  }
+}
+
+.front {
   font-family: 'Rubik', sans-serif;
+}
+
+body {
   display: flex;
 }
 
