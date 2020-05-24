@@ -1,3 +1,5 @@
+import { EditRefugePageComponent } from './pages/edit-refuge-page/edit-refuge-page.component';
+import { NewRefugePageComponent } from './pages/new-refuge-page/new-refuge-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -33,6 +35,8 @@ const routes: Routes = [
       { path: 'evenements/editer/:id', component: EditEventPageComponent },
       { path: 'categories', component: AnimalCategoriesPageComponent },
       { path: 'refuges', component: RefugesPageComponent },
+      { path: 'refuges/ajouter', component: NewRefugePageComponent },
+      { path: 'refuges/editer/:id', component: EditRefugePageComponent },
       { path: '**', component: NotFoundPageComponent },
     ],
   },

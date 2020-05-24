@@ -46,6 +46,10 @@ import { NewEventPageComponent } from './pages/new-event-page/new-event-page.com
 import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
 import { AnimalCategoriesSectionComponent } from './components/animal-categories/animal-categories-section/animal-categories-section.component';
 import { AnimalCategoryFormComponent } from './components/animal-categories/animal-category-form/animal-category-form.component';
+import { RefugesSectionComponent } from './components/refuges/refuges-section/refuges-section.component';
+import { RefugesFormComponent } from './components/refuges/refuges-form/refuges-form.component';
+import { NewRefugePageComponent } from './pages/new-refuge-page/new-refuge-page.component';
+import { EditRefugePageComponent } from './pages/edit-refuge-page/edit-refuge-page.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +76,10 @@ import { AnimalCategoryFormComponent } from './components/animal-categories/anim
     EditEventPageComponent,
     AnimalCategoriesSectionComponent,
     AnimalCategoryFormComponent,
+    RefugesSectionComponent,
+    RefugesFormComponent,
+    NewRefugePageComponent,
+    EditRefugePageComponent,
   ],
   imports: [
     CommonModule,
