@@ -1,1 +1,62 @@
-<p>refuges-form works!</p>
+<div class="refuges-form">
+  <div class="form-container" *ngIf="!isLoading">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <div class="address">
+        <div class="address-inputs">
+          <mat-form-field>
+            <mat-label>Adresse</mat-label>
+            <input matInput formControlName="address" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="city" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Code postal</mat-label>
+            <input matInput formControlName="zip_code" />
+          </mat-form-field>
+          <button
+            mat-stroked-button
+            (click)="calculateCoords()"
+            type="button"
+            [disabled]="
+              form.controls.address.invalid ||
+              form.controls.zip_code.invalid ||
+              form.controls.city.invalid
+            "
+          >
+            Calculer les coordonnées
+          </button>
+          <p style="color: red;" *ngIf="coordsError">{{ coordsError }}</p>
+        </div>
+        <div class="address-map">
+          <agm-map
+            (mapClick)="mapClick($event)"
+            *ngIf="coords"
+            [latitude]="coords.latitude"
+            [longitude]="coords.longitude"
+            [zoom]="12"
+          >
+            <agm-marker
+              [latitude]="coords.latitude"
+              [longitude]="coords.longitude"
+            ></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <button [disabled]="form.invalid" mat-button type="submit">
+        {{ editMode ? 'Modifier' : "Ajouter" }}
+      </button>
+    </form>
+  </div>
+  <mat-spinner *ngIf="isLoading && !error" style="margin: auto;"></mat-spinner>
+  <p style="color: red;" *ngIf="error">Une erreur s'est produite, veuillez réessayer plus tard</p>
+</div>
