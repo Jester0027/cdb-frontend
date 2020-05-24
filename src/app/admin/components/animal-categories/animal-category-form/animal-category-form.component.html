@@ -1,1 +1,16 @@
-<p>animal-category-form works!</p>
+<div class="animal-category-form">
+  <p *ngIf="data.id && data.name" >Modifier <span style="font-weight: bold;">{{ data.name }}</span></p>
+  <p *ngIf="!data.id && !data.name" >Ajouter une catégorie</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <p style="color: red;" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <div class="actions" *ngIf="!isLoading">
+      <button type="submit" mat-raised-button>Confirmer</button>
+      <button type="button" mat-stroked-button [mat-dialog-close]="false">Annuler</button>
+    </div>
+    <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
+  </form>
+</div>

@@ -1,5 +1,6 @@
+import { AnimalCategoryFormComponent } from './../animal-category-form/animal-category-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tap, switchMap } from 'rxjs/operators';
@@ -34,14 +35,11 @@ export class AnimalCategoriesSectionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.isAdmin = this.authService.getUser().roles.includes(UserRoles.SUPERADMIN);
-    this.categoriesSub = this.activatedRoute.queryParams
-      .pipe(
-        tap(() => (this.isLoading = true)),
-        switchMap((params) =>
-          this.animalCategoriesService.fetchCategories(params.page)
-        )
-      )
+    this.isAdmin = this.authService
+      .getUser()
+      .roles.includes(UserRoles.SUPERADMIN);
+    this.categoriesSub = this.animalCategoriesService
+      .fetchCategories()
       .subscribe(
         (res: AnimalCategory[]) => {
           this.isLoading = false;
@@ -58,17 +56,52 @@ export class AnimalCategoriesSectionComponent implements OnInit, OnDestroy {
     if (this.categoriesSub) {
       this.categoriesSub.unsubscribe();
     }
+    if (this.dialogRefSub) {
+      this.dialogRefSub.unsubscribe();
+    }
+  }
+
+  private regenerateCategories(res) {
+    if (res) {
+      this.categoriesSub = this.animalCategoriesService
+        .fetchCategories()
+        .subscribe(
+          (categories: AnimalCategory[]) => (this.categories = categories)
+        );
+    }
   }
 
   openDeleteDialog(id: number, name: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id, name, obs$: this.adminAnimalCategoriesService.delete(id) },
+      data: {
+        id,
+        name,
+        obs$: this.adminAnimalCategoriesService
+          .delete(id)
+          .pipe(tap(this.regenerateCategories.bind(this))),
+      },
+    });
+  }
+
+  openAddDialog(id: number = null, name: string = null) {
+    const dialogRef = this.dialog.open(AnimalCategoryFormComponent, {
+      data: { id, name },
     });
 
-    this.dialogRefSub = dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        this.categories = this.categories.filter((a) => a.id !== id);
-      }
-    });
+    this.dialogRefSub = dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((res) => {
+          this.isLoading = true;
+          return this.animalCategoriesService.fetchCategories();
+          // return of(null);
+        })
+      )
+      .subscribe((res) => {
+        if (res) {
+          this.isLoading = false;
+          this.categories = res;
+        }
+      });
   }
 }

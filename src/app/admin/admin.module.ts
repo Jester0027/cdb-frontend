@@ -46,8 +46,6 @@ import { NewEventPageComponent } from './pages/new-event-page/new-event-page.com
 import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
 import { AnimalCategoriesSectionComponent } from './components/animal-categories/animal-categories-section/animal-categories-section.component';
 import { AnimalCategoryFormComponent } from './components/animal-categories/animal-category-form/animal-category-form.component';
-import { NewAnimalCategoryPageComponent } from './pages/new-animal-category-page/new-animal-category-page.component';
-import { EditAnimalCategoryPageComponent } from './pages/edit-animal-category-page/edit-animal-category-page.component';
 
 @NgModule({
   declarations: [
@@ -74,8 +72,6 @@ import { EditAnimalCategoryPageComponent } from './pages/edit-animal-category-pa
     EditEventPageComponent,
     AnimalCategoriesSectionComponent,
     AnimalCategoryFormComponent,
-    NewAnimalCategoryPageComponent,
-    EditAnimalCategoryPageComponent,
   ],
   imports: [
     CommonModule,
