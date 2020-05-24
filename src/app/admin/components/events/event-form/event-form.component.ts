@@ -106,14 +106,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
           Validators.maxLength(255),
         ],
       ],
-      coordinates: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(255),
-        ],
-      ],
+      coordinates: [''],
       description: [
         '',
         [
@@ -191,7 +184,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
     const date = new Date(this.form.get('date').value);
     const [h, m] = this.form.get('time').value.split(':');
     date.setHours(+h, +m);
-    data.event_date = this.datePipe.transform(date, 'yyyy-MM-dd\THH:mm:ssZZZZZ');
+    data.event_date = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ssZZZZZ');
     data.coordinates = `${this.coords.latitude},${this.coords.longitude}`;
     if (this.editMode) {
       this.submitSub = this.adminEventService
