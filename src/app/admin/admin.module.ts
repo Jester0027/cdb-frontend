@@ -53,6 +53,7 @@ import { EditRefugePageComponent } from './pages/edit-refuge-page/edit-refuge-pa
 import { EventThemesPageComponent } from './pages/event-themes-page/event-themes-page.component';
 import { EventThemesDisplayComponent } from './components/event-themes/event-themes-display/event-themes-display.component';
 import { EventThemesFormComponent } from './components/event-themes/event-themes-form/event-themes-form.component';
+import { EventPictureFormComponent } from './components/events/event-picture-form/event-picture-form.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { EventThemesFormComponent } from './components/event-themes/event-themes
     EventThemesPageComponent,
     EventThemesDisplayComponent,
     EventThemesFormComponent,
+    EventPictureFormComponent,
   ],
   imports: [
     CommonModule,

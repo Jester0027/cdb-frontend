@@ -1,11 +1,12 @@
-import { DeleteDialogComponent } from './../../delete-dialog/delete-dialog.component';
-import { AdminEventService } from './../../../services/admin-event.service';
 import { MatDialog } from '@angular/material/dialog';
 import { switchMap, tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { EventPictureFormComponent } from './../event-picture-form/event-picture-form.component';
+import { DeleteDialogComponent } from './../../delete-dialog/delete-dialog.component';
+import { AdminEventService } from './../../../services/admin-event.service';
 import { Event } from './../../../../models/events/event.model';
 import { PaginatedData, Meta } from './../../../../models/paginated-data.model';
 import { EventsService } from './../../../../services/events.service';
@@ -66,6 +67,27 @@ export class EventsDisplayComponent implements OnInit, OnDestroy {
       relativeTo: this.activatedRoute,
       queryParams: { page: e.pageIndex + 1 },
       queryParamsHandling: 'merge',
+    });
+  }
+
+  openPictureDialog(e: Event) {
+    const dialogRef = this.dialog.open(EventPictureFormComponent, {
+      data: { event: e },
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.isLoading = true;
+        this.eventsSub = this.eventsService.fetchEvents(this.meta.currentPage).subscribe((data: PaginatedData<Event>) => {
+          this.isLoading = false;
+          this.events = data.data;
+        });
+      }
+    }, err => {
+      this.eventsSub = this.eventsService.fetchEvents().subscribe((data: PaginatedData<Event>) => {
+        this.isLoading = false;
+        this.router.navigate(['/admin', 'evenements']);
+      });
     });
   }
 

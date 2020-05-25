@@ -28,7 +28,11 @@
             Modifier
             <mat-icon inline="true">create</mat-icon>
           </button>
-          <button (click)="openDeleteDialog(element.id, element.title)"  class="actions" mat-flat-button color="warn">
+          <button (click)="openPictureDialog(element)" class="actions" mat-stroked-button color="primary">
+            Photo
+            <mat-icon inline="true">insert_photo</mat-icon>
+          </button>
+          <button (click)="openDeleteDialog(element.id, element.title)" class="actions" mat-flat-button color="warn">
             Supprimer
             <mat-icon inline="true">clear</mat-icon>
           </button>
