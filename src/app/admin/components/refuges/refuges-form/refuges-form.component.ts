@@ -25,7 +25,7 @@ export class RefugesFormComponent implements OnInit, OnDestroy {
   error: string = null;
   editMode = false;
   isLoading = false;
-  refugeId: number = null;
+  refugeId: string = null;
 
   constructor(
     private fb: FormBuilder,
@@ -87,7 +87,7 @@ export class RefugesFormComponent implements OnInit, OnDestroy {
           this.isLoading = true;
           if (params.id) {
             this.editMode = true;
-            this.refugeId = +params.id;
+            this.refugeId = params.id;
             return this.refugesService.fetchOneRefuge(params.id);
           }
           return of(null);
@@ -170,18 +170,16 @@ export class RefugesFormComponent implements OnInit, OnDestroy {
           }
         );
     } else {
-      this.adminRefugeSub = this.adminRefugesService
-        .add(refuge)
-        .subscribe(
-          () => {
-            this.isLoading = false;
-            this.router.navigate(['/admin', 'refuges']);
-          },
-          (err) => {
-            this.isLoading = false;
-            this.error = err.message;
-          }
-        );
+      this.adminRefugeSub = this.adminRefugesService.add(refuge).subscribe(
+        () => {
+          this.isLoading = false;
+          this.router.navigate(['/admin', 'refuges']);
+        },
+        (err) => {
+          this.isLoading = false;
+          this.error = err.message;
+        }
+      );
     }
   }
 }

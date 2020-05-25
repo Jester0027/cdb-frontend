@@ -15,9 +15,15 @@ export class EventThemesService {
     return this.http.get<EventTheme[]>(`${environment.api}/api/event_themes`);
   }
 
-  fetchOneEventTheme(id: number): Observable<EventTheme> {
+  fetchOneEventTheme(id: string): Observable<EventTheme> {
     return this.http.get<EventTheme>(
       `${environment.api}/api/event_themes/${id}`
+    );
+  }
+
+  fetchOneEventThemeFromSlug(slug: string): Observable<EventTheme> {
+    return this.http.get<EventTheme>(
+      `${environment.api}/api/event_themes/slug/${slug}`
     );
   }
 }

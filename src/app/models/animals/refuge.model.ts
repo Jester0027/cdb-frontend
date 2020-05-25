@@ -2,7 +2,7 @@ import { PaginatedData } from './../paginated-data.model';
 import { Animal } from './animal.model';
 
 export interface Refuge {
-  id?: number;
+  id?: string;
   name?: string;
   slug: string;
   address?: string;

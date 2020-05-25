@@ -75,7 +75,7 @@ export class AnimalsDisplayComponent implements OnInit, OnDestroy {
     });
   }
 
-  openDeleteDialog(id: number, name: string) {
+  openDeleteDialog(id: string, name: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: { id, name, obs$: this.adminAnimalsService.delete(id) },
     });

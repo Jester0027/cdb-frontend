@@ -24,7 +24,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
   themes: EventTheme[];
   event: Event;
-  eventId: number;
+  eventId: string;
   editMode = false;
   isLoading = false;
   dateError: string = null;
@@ -130,7 +130,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
         switchMap((params) => {
           if (params.id) {
             this.editMode = true;
-            this.eventId = +params.id;
+            this.eventId = params.id;
             return this.eventsService.fetchOneEvent(params.id);
           }
           return of(null);

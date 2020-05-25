@@ -71,7 +71,7 @@ export class AnimalCategoriesSectionComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDeleteDialog(id: number, name: string) {
+  openDeleteDialog(id: string, name: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {
         id,
@@ -83,7 +83,7 @@ export class AnimalCategoriesSectionComponent implements OnInit, OnDestroy {
     });
   }
 
-  openAddDialog(id: number = null, name: string = null) {
+  openAddDialog(id: string = null, name: string = null) {
     const dialogRef = this.dialog.open(AnimalCategoryFormComponent, {
       data: { id, name },
     });

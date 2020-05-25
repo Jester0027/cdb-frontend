@@ -23,7 +23,11 @@ export class RefugesService {
     );
   }
 
-  fetchOneRefuge(id: number): Observable<Refuge> {
+  fetchOneRefuge(id: string): Observable<Refuge> {
     return this.http.get<Refuge>(`${environment.api}/api/refuges/${id}`);
+  }
+
+  fetchOneRefugeFromSlug(slug: string): Observable<Refuge> {
+    return this.http.get<Refuge>(`${environment.api}/api/refuges/slug/${slug}`);
   }
 }

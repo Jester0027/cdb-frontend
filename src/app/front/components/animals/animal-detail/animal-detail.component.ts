@@ -38,7 +38,7 @@ export class AnimalDetailComponent implements OnInit, OnDestroy {
     this.animalSub = this.activatedRoute.params
       .pipe(
         switchMap((params) => {
-          return this.animalsService.fetchOneAnimal(params.id);
+          return this.animalsService.fetchOneAnimalFromSlug(params.slug);
         })
       )
       .subscribe(

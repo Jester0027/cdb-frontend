@@ -9,7 +9,7 @@
   </div>
   <div class="row" *ngIf="!isLoading && !error">
     <div class="col-12" *ngFor="let event of events" >
-      <a [routerLink]="[event.id]">
+      <a [routerLink]="[event.slug]">
         <div class="card">
           <div class="row">
             <div class="col-4 img">

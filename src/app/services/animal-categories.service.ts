@@ -16,9 +16,15 @@ export class AnimalCategoriesService {
     );
   }
 
-  fetchOneCategory(id: number): Observable<AnimalCategory> {
+  fetchOneCategory(id: string): Observable<AnimalCategory> {
     return this.http.get<AnimalCategory>(
       `${environment.api}/api/animal_categories/${id}`
+    );
+  }
+
+  fetchOneCategoryFromSlug(slug: string): Observable<AnimalCategory> {
+    return this.http.get<AnimalCategory>(
+      `${environment.api}/api/animal_categories/slug/${slug}`
     );
   }
 }

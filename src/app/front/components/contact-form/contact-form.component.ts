@@ -21,7 +21,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   private animalsSub: Subscription;
   leftArrowIcon = faArrowCircleLeft;
   paperPlaneIcon = faPaperPlane;
-  animal: { name: string; id: number | string } = null;
+  animal: { name: string; id: string } = null;
   subject: string = null;
   errorMessage: string = null;
 
@@ -59,7 +59,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
     if (this.animal) {
       this.animalsSub = this.animalsService
-        .fetchOneAnimal(+this.animal.id)
+        .fetchOneAnimal(this.animal.id)
         .subscribe(
           (res: Animal) => {
             if (this.animal.name !== res.name) {

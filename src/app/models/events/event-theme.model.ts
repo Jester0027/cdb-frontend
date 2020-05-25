@@ -2,7 +2,7 @@ import { PaginatedData } from './../paginated-data.model';
 import { Event } from './event.model';
 
 export interface EventTheme {
-  id?: number;
+  id?: string;
   name?: string;
   slug: string;
   description?: string;

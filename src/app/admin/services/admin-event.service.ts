@@ -11,7 +11,7 @@ import { AbstractCrudService } from './abstract-crud.service';
 export class AdminEventService extends AbstractCrudService<Event> {
   protected route = 'events';
 
-  addPicture(id: number, file: File) {
+  addPicture(id: string, file: File) {
     const formData = new FormData();
     formData.append('event_picture', file);
     return this.authService.checkCredentials().pipe(
@@ -25,7 +25,7 @@ export class AdminEventService extends AbstractCrudService<Event> {
     );
   }
 
-  deletePicture(id: number) {
+  deletePicture(id: string) {
     return this.authService.checkCredentials().pipe(
       switchMap(() => {
         return this.http.delete(

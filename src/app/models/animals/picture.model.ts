@@ -1,7 +1,7 @@
 import { Animal } from './animal.model';
 
 export interface Picture {
-  id?: number;
+  id?: string;
   picture: string;
   animal?: Animal;
 }

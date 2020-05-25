@@ -17,7 +17,7 @@ import { AdminAnimalsService } from './../../../services/admin-animals.service';
 export class AnimalPictureFormComponent implements OnInit, OnDestroy {
   private animalsSub: Subscription;
   files: File[] = [];
-  animalId: number;
+  animalId: string;
   pictures: Picture[] = [];
   isLoading = false;
 
@@ -58,7 +58,7 @@ export class AnimalPictureFormComponent implements OnInit, OnDestroy {
     )}/images/animal_pictures/${name}`;
   }
 
-  deletePicture(id: number) {
+  deletePicture(id: string) {
     return this.adminAnimalsService.deletePicture(id).subscribe(() => {
       this.pictures = this.pictures.filter((f) => f.id !== id);
     });

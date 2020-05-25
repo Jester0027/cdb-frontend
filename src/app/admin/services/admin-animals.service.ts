@@ -12,7 +12,7 @@ import { AbstractCrudService } from './abstract-crud.service';
 export class AdminAnimalsService extends AbstractCrudService<Animal> {
   protected route = 'animals';
 
-  addPictures(animalId: number = null, files: FileList | File[]) {
+  addPictures(animalId: string = null, files: FileList | File[]) {
     const formData: FormData = new FormData();
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < files.length; i++) {
@@ -30,7 +30,7 @@ export class AdminAnimalsService extends AbstractCrudService<Animal> {
     );
   }
 
-  deletePicture(id: number): Observable<any> {
+  deletePicture(id: string): Observable<any> {
     return this.authService.checkCredentials().pipe(
       switchMap(() => {
         return this.http.delete(

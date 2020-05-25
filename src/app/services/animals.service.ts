@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Response } from './../models/response.model';
 import { environment } from './../../environments/environment';
 import { Animal } from './../models/animals/animal.model';
 import { PaginatedData } from './../models/paginated-data.model';
@@ -15,20 +14,26 @@ export class AnimalsService {
 
   fetchAnimals(
     page: number = null
-  ): Observable<Response<PaginatedData<Animal>>> {
+  ): Observable<PaginatedData<Animal>> {
     const options = page
       ? { params: new HttpParams().set('page', page.toString()) }
       : {};
 
-    return this.http.get<Response<PaginatedData<Animal>>>(
+    return this.http.get<PaginatedData<Animal>>(
       `${environment.api}/api/animals`,
       options
     );
   }
 
-  fetchOneAnimal(id: number): Observable<Response<Animal>> {
-    return this.http.get<Response<Animal>>(
+  fetchOneAnimal(id: string): Observable<Animal> {
+    return this.http.get<Animal>(
       `${environment.api}/api/animals/${id}`
+    );
+  }
+
+  fetchOneAnimalFromSlug(slug: string): Observable<Animal> {
+    return this.http.get<Animal>(
+      `${environment.api}/api/animals/slug/${slug}`
     );
   }
 }

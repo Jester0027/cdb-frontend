@@ -18,7 +18,7 @@ export class AnimalCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.description = `Photo de ${this.animal.name}`;
-    this.link = `/animaux/${this.animal.id}`;
+    this.link = `/animaux/${this.animal.slug}`;
   }
 
   getSrc(name: string) {

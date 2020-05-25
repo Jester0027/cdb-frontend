@@ -36,7 +36,7 @@ export abstract class AbstractCrudService<T> {
     );
   }
 
-  update(id: number, item: T): Observable<any> {
+  update(id: string, item: T): Observable<any> {
     return this.authService.checkCredentials().pipe(
       switchMap(() => {
         return this.http.put(
@@ -48,7 +48,7 @@ export abstract class AbstractCrudService<T> {
     );
   }
 
-  delete(id: number): Observable<any> {
+  delete(id: string): Observable<any> {
     return this.authService.checkCredentials().pipe(
       switchMap(() => {
         return this.http.delete(

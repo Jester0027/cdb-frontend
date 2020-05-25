@@ -17,7 +17,7 @@ export class AnimalCategoryFormComponent implements OnInit, OnDestroy {
   isLoading = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { id?: number; name?: string },
+    @Inject(MAT_DIALOG_DATA) public data: { id?: string; name?: string },
     private adminAnimalCategoriesService: AdminAnimalCategoriesService,
     private dialog: MatDialog,
     private fb: FormBuilder

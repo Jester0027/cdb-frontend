@@ -3,8 +3,9 @@ import { Refuge } from './refuge.model';
 import { AnimalCategory } from './animal-category.model';
 
 export interface Animal {
-  id?: number;
+  id?: string;
   name: string;
+  slug?: string;
   race: string;
   /**
    * height in cm
