@@ -50,6 +50,9 @@ import { RefugesSectionComponent } from './components/refuges/refuges-section/re
 import { RefugesFormComponent } from './components/refuges/refuges-form/refuges-form.component';
 import { NewRefugePageComponent } from './pages/new-refuge-page/new-refuge-page.component';
 import { EditRefugePageComponent } from './pages/edit-refuge-page/edit-refuge-page.component';
+import { EventThemesPageComponent } from './pages/event-themes-page/event-themes-page.component';
+import { EventThemesDisplayComponent } from './components/event-themes/event-themes-display/event-themes-display.component';
+import { EventThemesFormComponent } from './components/event-themes/event-themes-form/event-themes-form.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +83,9 @@ import { EditRefugePageComponent } from './pages/edit-refuge-page/edit-refuge-pa
     RefugesFormComponent,
     NewRefugePageComponent,
     EditRefugePageComponent,
+    EventThemesPageComponent,
+    EventThemesDisplayComponent,
+    EventThemesFormComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,16 @@
+<div class="event-themes-form">
+  <p *ngIf="editMode">Modifier <span style="font-weight: bold;">{{ data.name }}</span></p>
+  <p *ngIf="!editMode">Ajouter un thème</p>
+  <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <button mat-button type="submit">{{ editMode ? 'Modifier' : 'Ajouter' }}</button>
+  </form>
+  <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
+</div>
