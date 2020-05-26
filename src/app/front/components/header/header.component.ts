@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { faSortDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +9,17 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  dropdown = faSortDown;
+  public dropdown = faSortDown;
+  public open = faBars;
 
-  isHomePage: boolean;
-  hasScrolled: boolean;
-  path: string;
+  public isHomePage: boolean;
+  public hasScrolled: boolean;
+  public path: string;
+  public isNavOpen = false;
 
-  constructor(private router: Router, private location: Location) {}
+  public constructor(private router: Router, private location: Location) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.isHomePage = this.location.path() === '';
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -29,7 +31,15 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   @HostListener('window:load', [])
-  onScroll() {
+  public onScroll() {
     this.hasScrolled = window.scrollY > 150;
+  }
+
+  public openNav() {
+    this.isNavOpen = true;
+  }
+
+  public onClose() {
+    this.isNavOpen = false;
   }
 }

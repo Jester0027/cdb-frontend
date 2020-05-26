@@ -12,6 +12,19 @@ header {
   box-shadow: 0 0 7px black;
   color: $altText;
   // border-bottom: solid 1px $dividerColor;
+
+  .sidenav-open {
+    color: $altText;
+  }
+}  
+
+.sidenav-open {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  font-size: 28px;
+  height: 28px;
 }
 
 .container {
@@ -81,6 +94,10 @@ header {
     text-decoration: none;
     color: $secondaryText;
   }
+
+  .sidenav-open {
+    color: $secondaryText;
+  }
 }
 
 .padding {
@@ -91,4 +108,16 @@ fa-icon {
   display: flex;
   height: 19px;
   margin-left: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .sidenav-open {
+    display: block;
+  }
+  #logo {
+    margin: auto;
+  }
 }

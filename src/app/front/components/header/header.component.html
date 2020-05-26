@@ -1,7 +1,11 @@
 <header [ngClass]="{ transparent: isHomePage && !hasScrolled }">
+  <app-sidenav [isOpen]="isNavOpen" (clear)="onClose()"></app-sidenav>
   <div class="container">
+    <button class="sidenav-open" (click)="openNav()">
+      <fa-icon [icon]="open"></fa-icon>
+    </button>
     <div id="logo">LOGO</div>
-    <nav>
+    <nav class="desktop-nav">
       <ul>
         <li
           routerLinkActive="active"

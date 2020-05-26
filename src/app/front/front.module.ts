@@ -27,6 +27,7 @@ import { EventsSectionComponent } from './components/events/events-section/event
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
 import { EventDetailPageComponent } from './pages/event-detail-page/event-detail-page.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { EventDetailPageComponent } from './pages/event-detail-page/event-detail
     PaginatorComponent,
     EventDetailComponent,
     EventDetailPageComponent,
+    SidenavComponent,
   ],
   imports: [
     CommonModule,

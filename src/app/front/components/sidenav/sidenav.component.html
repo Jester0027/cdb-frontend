@@ -1,0 +1,27 @@
+<div class="nav">
+  <div class="sidenav" [ngClass]="{open: isOpen, closed: !isOpen}">
+    <button class="sidenav-close" (click)="closeNav()">
+      <fa-icon [icon]="closeIcon"></fa-icon>
+    </button>
+    <nav class="mobile-nav">
+      <ul>
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a (click)="closeNav()" routerLink="/">Accueil</a>
+        </li>
+        <li routerLinkActive="active"><a (click)="closeNav()" routerLink="/animaux">Animaux</a></li>
+        <li routerLinkActive="active"><a (click)="closeNav()" routerLink="/evenements">Évènements</a></li>
+        <li routerLinkActive="active">
+          <a (click)="closeNav()" routerLink="/contact">
+            Contact
+            <fa-icon [icon]="dropdownIcon"></fa-icon>
+          </a>
+        </li>
+        <li routerLinkActive="active"><a (click)="closeNav()" routerLink="#">Nous soutenir</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="background" (click)="closeNav()" [ngClass]="{open: isOpen, closed: !isOpen}"></div>
+</div>
