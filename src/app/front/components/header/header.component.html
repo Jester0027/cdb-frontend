@@ -1,5 +1,5 @@
 <header [ngClass]="{ transparent: isHomePage && !hasScrolled }">
-  <app-sidenav [isOpen]="isNavOpen" (clear)="onClose()"></app-sidenav>
+  <app-sidenav [(isOpen)]="isNavOpen"></app-sidenav>
   <div class="container">
     <button class="sidenav-open" (click)="openNav()">
       <fa-icon [icon]="open"></fa-icon>

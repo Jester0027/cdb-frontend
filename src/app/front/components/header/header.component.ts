@@ -23,8 +23,9 @@ export class HeaderComponent implements OnInit {
     this.isHomePage = this.location.path() === '';
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        this.isHomePage = event.url === '/';
+        this.isHomePage = event.url === '/' || event.url.startsWith('/#');
         this.path = event.url;
+        console.log(event.url);
       }
     });
   }
@@ -32,14 +33,10 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:scroll', [])
   @HostListener('window:load', [])
   public onScroll() {
-    this.hasScrolled = window.scrollY > 150;
+    this.hasScrolled = window.scrollY > 50;
   }
 
   public openNav() {
     this.isNavOpen = true;
-  }
-
-  public onClose() {
-    this.isNavOpen = false;
   }
 }

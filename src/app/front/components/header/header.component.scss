@@ -7,7 +7,6 @@ header {
   width: 100%;
   height: 100px;
   background-color: $accentColor;
-  z-index: 100;
   transition: background-color 300ms, color 300ms, box-shadow 300ms;
   box-shadow: 0 0 7px black;
   color: $altText;
@@ -16,7 +15,7 @@ header {
   .sidenav-open {
     color: $altText;
   }
-}  
+}
 
 .sidenav-open {
   display: none;
@@ -25,6 +24,10 @@ header {
   border: none;
   font-size: 28px;
   height: 28px;
+
+  fa-icon {
+    height: 28px;
+  }
 }
 
 .container {
@@ -49,7 +52,6 @@ header {
     height: 100%;
     display: flex;
     justify-content: space-around;
-    height: 100%;
     align-items: center;
   }
 
