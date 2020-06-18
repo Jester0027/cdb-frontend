@@ -1,37 +1,13 @@
-import { Meta } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
-
-enum Property {
-  URL = 'og:url',
-  TYPE = 'og:type',
-  TITLE = 'og:title',
-  DESCRIPTION = 'og:description',
-  IMAGE = 'og:image',
-  APP_ID = 'fb:app_id',
-  LOCALE = 'og:locale'
-}
+import { AbstractSeoMetaTagsService } from './abstract-seo-meta-tags.service';
+import { FacebookProp } from './facebook-prop.enum';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FacebookSeoTagsService {
-  constructor(private meta: Meta) {}
-
-  private getMetaProp(prop: Property): HTMLMetaElement | null {
-    return this.meta.getTag(`property="${prop}"`);
-  }
-
-  private setMetaProp(prop: Property, value: string): this {
-    if (this.meta.getTag(`property="${prop}"`)) {
-      this.meta.updateTag({ property: prop, content: value });
-    } else {
-      this.meta.addTag({ property: prop, content: value });
-    }
-    return this;
-  }
-
+export class FacebookSeoTagsService extends AbstractSeoMetaTagsService {
   getUrl(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.URL);
+    return this.getMetaProp(FacebookProp.URL);
   }
 
   /**
@@ -44,11 +20,11 @@ export class FacebookSeoTagsService {
    * les mentions J’aime et les partages répartis sur différentes versions de la page.
    */
   setUrl(url: string): this {
-    return this.setMetaProp(Property.URL, url);
+    return this.setMetaProp(FacebookProp.URL, url);
   }
 
   getType(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.TYPE);
+    return this.getMetaProp(FacebookProp.TYPE);
   }
 
   /**
@@ -60,11 +36,11 @@ export class FacebookSeoTagsService {
    * Retrouvez la liste complète de types d’objet dans Référence sur les types d’objet.
    */
   setType(type: string): this {
-    return this.setMetaProp(Property.TYPE, type);
+    return this.setMetaProp(FacebookProp.TYPE, type);
   }
 
   getTitle(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.TITLE);
+    return this.getMetaProp(FacebookProp.TITLE);
   }
 
   /**
@@ -73,11 +49,11 @@ export class FacebookSeoTagsService {
    * telle que le nom de votre site.
    */
   setTitle(title: string): this {
-    return this.setMetaProp(Property.TITLE, title);
+    return this.setMetaProp(FacebookProp.TITLE, title);
   }
 
   getDescription(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.DESCRIPTION);
+    return this.getMetaProp(FacebookProp.DESCRIPTION);
   }
 
   /**
@@ -86,11 +62,11 @@ export class FacebookSeoTagsService {
    * Elle s’affiche sous le titre de la publication sur Facebook.
    */
   setDescription(description: string): this {
-    return this.setMetaProp(Property.DESCRIPTION, description);
+    return this.setMetaProp(FacebookProp.DESCRIPTION, description);
   }
 
   getImage(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.IMAGE);
+    return this.getMetaProp(FacebookProp.IMAGE);
   }
 
   /**
@@ -100,11 +76,11 @@ export class FacebookSeoTagsService {
    * Vous pouvez également consulter notre guide des recommandations pour découvrir comment indiquer une image d’aperçu de qualité.
    */
   setImage(image: string): this {
-    return this.setMetaProp(Property.IMAGE, image);
+    return this.setMetaProp(FacebookProp.IMAGE, image);
   }
 
   getAppId(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.APP_ID);
+    return this.getMetaProp(FacebookProp.APP_ID);
   }
 
   /**
@@ -115,11 +91,11 @@ export class FacebookSeoTagsService {
    * Retrouvez l’ID d’app dans votre Espace App.
    */
   setAppId(appId: string): this {
-    return this.setMetaProp(Property.APP_ID, appId);
+    return this.setMetaProp(FacebookProp.APP_ID, appId);
   }
 
   getLocale(): HTMLMetaElement | null {
-    return this.getMetaProp(Property.LOCALE);
+    return this.getMetaProp(FacebookProp.LOCALE);
   }
 
   /**
@@ -129,6 +105,6 @@ export class FacebookSeoTagsService {
    * Consultez notre document de localisation pour en savoir plus sur les langues prises en charge.
    */
   setLocale(locale: string): this {
-    return this.setMetaProp(Property.LOCALE, locale);
+    return this.setMetaProp(FacebookProp.LOCALE, locale);
   }
 }
