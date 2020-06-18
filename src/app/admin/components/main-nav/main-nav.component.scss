@@ -16,9 +16,18 @@
   z-index: 1;
 }
 
+.mat-list-item {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.mat-list-item.active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFFFFF;
+}
+
 .main-logout-button {
   position: absolute;
-  right: 0px;
+  right: 0;
 
   mat-icon {
     margin-left: 10px;
