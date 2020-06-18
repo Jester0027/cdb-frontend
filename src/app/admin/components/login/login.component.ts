@@ -1,9 +1,9 @@
 import { switchMap, tap, catchError } from 'rxjs/operators';
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +21,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: new FormControl(),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params.isLoading) {
+        this.isLoading = true;
+      }
+    });
+  }
 
   onSubmit() {
     this.isLoading = true;
