@@ -1,10 +1,9 @@
-import { environment } from './../../../../../environments/environment';
-import { AdminEventService } from './../../../services/admin-event.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { environment } from '../../../../../environments/environment';
+import { AdminEventService } from '../../../services/admin-event.service';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 
-import { Event } from './../../../../models/events/event.model';
+import { Event } from '../../../../models/events/event.model';
 
 @Component({
   templateUrl: './event-picture-form.component.html',
@@ -18,8 +17,10 @@ export class EventPictureFormComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { event: Event },
     private adminEventService: AdminEventService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private matDialogRef: MatDialogRef<EventPictureFormComponent>
+  ) {
+  }
 
   get picture() {
     if (!this.data.event.image_url) {
@@ -33,10 +34,10 @@ export class EventPictureFormComponent implements OnInit {
       return this.data.event.image_url;
     }
 
-    return `${environment.api.replace(
+    return `${ environment.api.replace(
       '/index.php',
       ''
-    )}/images/event_pictures/${this.data.event.image_url}`;
+    ) }/images/event_pictures/${ this.data.event.image_url }`;
   }
 
   onSelect(event) {
@@ -48,15 +49,14 @@ export class EventPictureFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.event);
   }
 
   deletePicture() {
     this.isLoading = true;
     this.adminEventService.deletePicture(this.data.event.id).subscribe(
-      (res) => {
+      () => {
         this.isLoading = false;
-        this.data.event.image_url = null;
+        this.matDialogRef.close(true);
       },
       (err) => {
         this.isLoading = false;
@@ -67,12 +67,10 @@ export class EventPictureFormComponent implements OnInit {
 
   onSubmit() {
     this.isLoading = true;
-    console.log(this.file);
     this.adminEventService.addPicture(this.data.event.id, this.file).subscribe(
-      (res) => {
+      () => {
         this.isLoading = false;
-        console.log(res);
-        this.dialog.closeAll();
+        this.matDialogRef.close(true);
       },
       (err) => {
         this.isLoading = false;
