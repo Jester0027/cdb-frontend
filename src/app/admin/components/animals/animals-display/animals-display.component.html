@@ -7,10 +7,6 @@
   </div>
   <div *ngIf="!isLoading && !error">
     <table mat-table [dataSource]="animals">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>identifiant</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-      </ng-container>
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -18,6 +14,14 @@
       <ng-container matColumnDef="race">
         <th mat-header-cell *matHeaderCellDef>Race</th>
         <td mat-cell *matCellDef="let element">{{ element.race }}</td>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Catégorie</th>
+        <td mat-cell *matCellDef="let element">{{ element.animal_category.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="refuge">
+        <th mat-header-cell *matHeaderCellDef>Refuge</th>
+        <td mat-cell *matCellDef="let element">{{ element.refuge.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
@@ -50,11 +54,11 @@
 
       <tr
         mat-header-row
-        *matHeaderRowDef="['id', 'name', 'race', 'actions']"
+        *matHeaderRowDef="['name', 'race', 'category', 'refuge', 'actions']"
       ></tr>
       <tr
         mat-row
-        *matRowDef="let row; columns: ['id', 'name', 'race', 'actions']"
+        *matRowDef="let row; columns: ['name', 'race', 'category', 'refuge', 'actions']"
       ></tr>
     </table>
     <mat-paginator
