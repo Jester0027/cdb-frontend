@@ -1,7 +1,7 @@
 <div class="event-form">
   <div class="form-container">
     <p style="color: red; text-align: center;" *ngIf="errorMessage">{{ errorMessage }}</p>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
       <input type="hidden" formControlName="coordinates" />
       <mat-form-field>
         <mat-label>Titre</mat-label>
@@ -88,5 +88,6 @@
       </mat-form-field>
       <button type="submit" mat-button>Confirmer</button>
     </form>
+    <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
   </div>
 </div>
