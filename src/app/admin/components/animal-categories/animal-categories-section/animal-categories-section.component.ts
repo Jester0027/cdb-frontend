@@ -1,4 +1,4 @@
-import { AnimalCategoryFormComponent } from './../animal-category-form/animal-category-form.component';
+import { AnimalCategoryFormComponent } from '../animal-category-form/animal-category-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -6,11 +6,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tap, switchMap } from 'rxjs/operators';
 import { UserRoles } from 'src/app/models/user.model';
 
-import { AuthService } from './../../../services/auth.service';
-import { AdminAnimalCategoriesService } from './../../../services/admin-animal-categories.service';
-import { DeleteDialogComponent } from './../../delete-dialog/delete-dialog.component';
-import { AnimalCategory } from './../../../../models/animals/animal-category.model';
-import { AnimalCategoriesService } from './../../../../services/animal-categories.service';
+import { AuthService } from '../../../services/auth.service';
+import { AdminAnimalCategoriesService } from '../../../services/admin-animal-categories.service';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
+import { AnimalCategory } from '../../../../models/animals/animal-category.model';
+import { AnimalCategoriesService } from '../../../../services/animal-categories.service';
 
 @Component({
   selector: 'app-animal-categories-section',
@@ -72,7 +72,7 @@ export class AnimalCategoriesSectionComponent implements OnInit, OnDestroy {
   }
 
   openDeleteDialog(id: string, name: string) {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+    this.dialog.open(DeleteDialogComponent, {
       data: {
         id,
         name,
@@ -92,14 +92,16 @@ export class AnimalCategoriesSectionComponent implements OnInit, OnDestroy {
       .afterClosed()
       .pipe(
         switchMap((res) => {
-          this.isLoading = true;
-          return this.animalCategoriesService.fetchCategories();
-          // return of(null);
+          if (res) {
+            this.isLoading = true;
+            return this.animalCategoriesService.fetchCategories();
+          }
+          return of(null);
         })
       )
       .subscribe((res) => {
+        this.isLoading = false;
         if (res) {
-          this.isLoading = false;
           this.categories = res;
         }
       });

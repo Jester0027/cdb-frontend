@@ -1,6 +1,6 @@
-import { AdminAnimalCategoriesService } from './../../../services/admin-animal-categories.service';
+import { AdminAnimalCategoriesService } from '../../../services/admin-animal-categories.service';
 import { Subscription } from 'rxjs';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 
@@ -20,7 +20,8 @@ export class AnimalCategoryFormComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: { id?: string; name?: string },
     private adminAnimalCategoriesService: AdminAnimalCategoriesService,
     private dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private matDialogRef: MatDialogRef<AnimalCategoryFormComponent>
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +49,9 @@ export class AnimalCategoryFormComponent implements OnInit, OnDestroy {
       this.animalCategoriesSub = this.adminAnimalCategoriesService
         .update(this.data.id, this.form.value)
         .subscribe(
-          (res) => {
+          () => {
             this.isLoading = false;
-            this.dialog.closeAll();
-            console.log(res);
+            this.matDialogRef.close(true);
           },
           (err) => {
             this.isLoading = false;
@@ -62,10 +62,9 @@ export class AnimalCategoryFormComponent implements OnInit, OnDestroy {
       this.animalCategoriesSub = this.adminAnimalCategoriesService
         .add(this.form.value)
         .subscribe(
-          (res) => {
+          () => {
             this.isLoading = false;
-            this.dialog.closeAll();
-            console.log(res);
+            this.matDialogRef.close(true);
           },
           (err) => {
             this.isLoading = false;
