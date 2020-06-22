@@ -72,3 +72,23 @@ figure.paws {
     height: 100%;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .text {
+    margin-top: 585px;
+  }
+  h3 {
+    position: relative;
+    top: 550px;
+    margin: auto;
+  }
+  .paws {
+    top: 0;
+    height: 40%;
+    width: 50%;
+    transform: rotate(0deg);
+  }
+}

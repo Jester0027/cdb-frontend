@@ -16,6 +16,11 @@ h3 {
   font-size: 40px;
 }
 
+.map {
+  display: flex;
+  justify-content: center;
+}
+
 .map-container {
   width: 450px;
   height: 450px;
@@ -77,4 +82,11 @@ h3 {
     }
   }
 
+}
+
+@media screen and (max-width: 600px) {
+  .info-card {
+    margin: auto 25px;
+    margin-top: 50px;
+  }
 }
