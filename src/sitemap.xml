@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://coeurdebouviers.be/</loc>
+        <lastmod>2020-06-16T22:33:21+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://coeurdebouviers.be/animaux</loc>
+        <lastmod>2020-06-16T22:33:21+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://coeurdebouviers.be/evenements</loc>
+        <lastmod>2020-06-16T22:33:21+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://coeurdebouviers.be/contact</loc>
+        <lastmod>2020-06-16T22:33:21+00:00</lastmod>
+        <priority>0.50</priority>
+    </url>
+</urlset>
