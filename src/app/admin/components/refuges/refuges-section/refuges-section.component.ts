@@ -4,13 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { AdminRefugesService } from './../../../services/admin-refuges.service';
-import { DeleteDialogComponent } from './../../delete-dialog/delete-dialog.component';
-import { UserRoles } from './../../../../models/user.model';
-import { AuthService } from './../../../services/auth.service';
-import { Meta, PaginatedData } from './../../../../models/paginated-data.model';
-import { Refuge } from './../../../../models/animals/refuge.model';
-import { RefugesService } from './../../../../services/refuges.service';
+import { AdminRefugesService } from '../../../services/admin-refuges.service';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
+import { UserRoles } from '../../../../models/user.model';
+import { AuthService } from '../../../services/auth.service';
+import { Meta, PaginatedData } from '../../../../models/paginated-data.model';
+import { Refuge } from '../../../../models/animals/refuge.model';
+import { RefugesService } from '../../../../services/refuges.service';
 
 @Component({
   selector: 'app-refuges-section',
