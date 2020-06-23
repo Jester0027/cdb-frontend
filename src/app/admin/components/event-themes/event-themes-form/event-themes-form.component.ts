@@ -1,7 +1,7 @@
-import { AdminEventThemesService } from './../../../services/admin-event-themes.service';
-import { EventTheme } from './../../../../models/events/event-theme.model';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { EventThemesService } from './../../../../services/event-themes.service';
+import { AdminEventThemesService } from '../../../services/admin-event-themes.service';
+import { EventTheme } from '../../../../models/events/event-theme.model';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { EventThemesService } from '../../../../services/event-themes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 
@@ -20,8 +20,10 @@ export class EventThemesFormComponent implements OnInit {
     private fb: FormBuilder,
     private eventThemesService: EventThemesService,
     private adminEventThemesService: AdminEventThemesService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private matDialogRef: MatDialogRef<EventThemesFormComponent>
+  ) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -64,10 +66,10 @@ export class EventThemesFormComponent implements OnInit {
       this.adminEventThemesService
         .update(this.data.id, this.form.value)
         .subscribe(
-          (res) => {
+          () => {
             this.error = null;
             this.isLoading = false;
-            this.dialog.closeAll();
+            this.matDialogRef.close(true);
           },
           (err) => {
             this.isLoading = false;
@@ -76,10 +78,10 @@ export class EventThemesFormComponent implements OnInit {
         );
     } else {
       this.adminEventThemesService.add(this.form.value).subscribe(
-        (res) => {
+        () => {
           this.error = null;
           this.isLoading = false;
-          this.dialog.closeAll();
+          this.matDialogRef.close(true);
         },
         (err) => {
           this.isLoading = false;

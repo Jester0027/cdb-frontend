@@ -1,12 +1,12 @@
-import { EventThemesFormComponent } from './../event-themes-form/event-themes-form.component';
-import { DeleteDialogComponent } from './../../delete-dialog/delete-dialog.component';
+import { EventThemesFormComponent } from '../event-themes-form/event-themes-form.component';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AdminEventThemesService } from './../../../services/admin-event-themes.service';
+import { AdminEventThemesService } from '../../../services/admin-event-themes.service';
 import { tap, switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
-import { EventThemesService } from './../../../../services/event-themes.service';
-import { EventTheme } from './../../../../models/events/event-theme.model';
-import { AuthService } from './../../../services/auth.service';
+import { of, Subscription } from 'rxjs';
+import { EventThemesService } from '../../../../services/event-themes.service';
+import { EventTheme } from '../../../../models/events/event-theme.model';
+import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserRoles } from 'src/app/models/user.model';
 
@@ -28,7 +28,8 @@ export class EventThemesDisplayComponent implements OnInit, OnDestroy {
     private eventThemesService: EventThemesService,
     private adminEventThemesService: AdminEventThemesService,
     private dialog: MatDialog
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -63,15 +64,18 @@ export class EventThemesDisplayComponent implements OnInit, OnDestroy {
 
   openAddDialog(id: string = null, name: string = null) {
     const dialogRef = this.dialog.open(EventThemesFormComponent, {
-      data: { id, name },
+      data: {id, name},
     });
 
     this.dialogRefSub = dialogRef
       .afterClosed()
       .pipe(
         switchMap((res) => {
-          this.isLoading = true;
-          return this.eventThemesService.fetchEventThemes();
+          if (res) {
+            this.isLoading = true;
+            return this.eventThemesService.fetchEventThemes();
+          }
+          return of(null);
         })
       )
       .subscribe((res) => {
@@ -83,7 +87,7 @@ export class EventThemesDisplayComponent implements OnInit, OnDestroy {
   }
 
   openDeleteDialog(id: string, name: string) {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+    this.dialog.open(DeleteDialogComponent, {
       data: {
         id,
         name,
