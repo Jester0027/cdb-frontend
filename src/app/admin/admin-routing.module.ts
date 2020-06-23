@@ -18,6 +18,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.component';
 import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
 import { EventThemesPageComponent } from './pages/event-themes-page/event-themes-page.component';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'refuges', component: RefugesPageComponent },
       { path: 'refuges/ajouter', component: NewRefugePageComponent },
       { path: 'refuges/editer/:id', component: EditRefugePageComponent },
+      { path: 'utilisateurs', component: UsersPageComponent },
       { path: '**', component: NotFoundPageComponent },
     ],
   },

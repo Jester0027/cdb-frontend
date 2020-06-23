@@ -1,0 +1,12 @@
+<div class="users-form">
+    <p>Ajouter un utilisateur</p>
+    <p>Un email avec les identifiants lui seront envoyés</p>
+    <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Adresse email</mat-label>
+            <input matInput formControlName="email" />
+        </mat-form-field>
+        <button mat-button type="submit">Ajouter</button>
+    </form>
+    <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
+</div>

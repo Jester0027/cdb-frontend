@@ -21,7 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
-import { SharedModule } from './../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
@@ -54,6 +54,9 @@ import { EventThemesPageComponent } from './pages/event-themes-page/event-themes
 import { EventThemesDisplayComponent } from './components/event-themes/event-themes-display/event-themes-display.component';
 import { EventThemesFormComponent } from './components/event-themes/event-themes-form/event-themes-form.component';
 import { EventPictureFormComponent } from './components/events/event-picture-form/event-picture-form.component';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
+import { UsersSectionComponent } from './components/users/users-section/users-section.component';
+import { UsersFormComponent } from './components/users/users-form/users-form.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +91,9 @@ import { EventPictureFormComponent } from './components/events/event-picture-for
     EventThemesDisplayComponent,
     EventThemesFormComponent,
     EventPictureFormComponent,
+    UsersPageComponent,
+    UsersSectionComponent,
+    UsersFormComponent,
   ],
   imports: [
     CommonModule,
@@ -116,4 +122,5 @@ import { EventPictureFormComponent } from './components/events/event-picture-for
   ],
   providers: [DatePipe],
 })
-export class AdminModule {}
+export class AdminModule {
+}
