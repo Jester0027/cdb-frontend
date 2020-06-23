@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
-import { Animal } from './../../../models/animals/animal.model';
-import { FacebookSeoTagsService } from './../../services/facebook-seo-tags.service';
+import { Animal } from '../../../models/animals/animal.model';
+import { FacebookSeoTagsService } from '../../services/facebook-seo-tags.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-animal-detail-page',
@@ -10,14 +11,19 @@ import { FacebookSeoTagsService } from './../../services/facebook-seo-tags.servi
   styleUrls: ['./animal-detail-page.component.scss'],
 })
 export class AnimalDetailPageComponent implements OnInit {
-  constructor(private fbService: FacebookSeoTagsService) {}
+  constructor(private titleService: Title, private fbService: FacebookSeoTagsService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   componentLoadHandler(animal: Animal) {
+    this.titleService.setTitle(`Page d'adoption de ${ animal.name }`);
     this.fbService
-      .setTitle(`Page d'adoption de ${animal.name}`)
+      .setTitle(`Adopter ${ animal.name }`)
       .setDescription(animal.description)
-      .setType('article');
+      .setUrl(`${ environment.url }/animaux/${ animal.slug }`)
+      .setImage(`${ environment.url }/assets/images/favicon.png`)
+    ;
   }
 }

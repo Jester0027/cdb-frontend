@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { FacebookSeoTagsService } from './services/facebook-seo-tags.service';
 
 @Component({
@@ -9,13 +9,14 @@ import { FacebookSeoTagsService } from './services/facebook-seo-tags.service';
   styleUrls: ['front.component.scss'],
 })
 export class FrontComponent implements OnInit {
-  constructor(private fbService: FacebookSeoTagsService) {}
+  constructor(private fbService: FacebookSeoTagsService) {
+  }
 
   ngOnInit(): void {
     this.fbService
-      .setUrl('')
-      .setDescription('')
-      .setImage('./assets/images/erda-estremera-unsplash.png')
+      .setUrl(environment.url)
+      .setDescription('Refuge Coeur de Bouviers')
+      .setImage(`${ environment.url }/assets/images/favicon.png`)
       .setTitle('Coeur de Bouviers')
       .setAppId(environment.fbAppId)
       .setType('website')

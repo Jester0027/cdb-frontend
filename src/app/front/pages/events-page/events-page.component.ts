@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { FacebookSeoTagsService } from '../../services/facebook-seo-tags.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-events-page',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title, private fbService: FacebookSeoTagsService) {
+  }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Évènements');
+    this.fbService
+      .setUrl(`${ environment.url }/evenements`)
+      .setDescription('Évènements de Coeur de Bouviers')
+      .setTitle(`Évènements`)
+      .setImage(`${ environment.url }/assets/images/favicon.png`);
   }
 
 }
