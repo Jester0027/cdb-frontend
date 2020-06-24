@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build:ssr && npm run serve:ssr",
+    "start": "npm run serve:ssr",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -36,6 +36,7 @@
     "bootstrap": "^4.4.1",
     "express": "^4.15.2",
     "jquery": ">=3.5.0",
+    "ng-recaptcha": "^5.0.0",
     "ngx-dropzone": "^2.2.2",
     "ngx-material-timepicker": "^5.5.2",
     "rxjs": "~6.5.4",

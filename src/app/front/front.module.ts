@@ -2,8 +2,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaModule } from 'ng-recaptcha';
 
-import { SharedModule } from './../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { WelcomeComponent } from './components/home/welcome/welcome.component';
 import { FrontRoutingModule } from './front-routing.module';
 import { FrontComponent } from './front.component';
@@ -61,6 +62,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FontAwesomeModule,
     ReactiveFormsModule,
     SharedModule,
+    RecaptchaModule
   ],
 })
 export class FrontModule {}
