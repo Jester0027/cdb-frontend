@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { faSortDown, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +9,7 @@ import { faSortDown, faBars } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public dropdown = faSortDown;
   public open = faBars;
-
   public isHomePage: boolean;
   public hasScrolled: boolean;
   public path: string;
@@ -20,12 +18,13 @@ export class HeaderComponent implements OnInit {
   public constructor(private router: Router, private location: Location) {}
 
   public ngOnInit(): void {
-    this.isHomePage = this.location.path() === '';
+    // @ts-ignore
+    this.isHomePage = '/' === this.location._platformLocation.pathname;
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        this.isHomePage = event.url === '/' || event.url.startsWith('/#');
+        // @ts-ignore
+        this.isHomePage = '/' === this.location._platformLocation.pathname;
         this.path = event.url;
-        console.log(event.url);
       }
     });
   }
