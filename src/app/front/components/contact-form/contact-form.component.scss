@@ -6,6 +6,11 @@ h1 {
   margin: 40px auto;
 }
 
+.rgpd-info {
+  font-style: italic;
+  font-size: 13px;
+}
+
 #back-button {
   margin: 15px 0;
 
@@ -17,5 +22,9 @@ h1 {
 form {
   fa-icon {
     margin-left: 5px;
+  }
+
+  #submit-button {
+    margin: 25px 25px 25px 0;
   }
 }

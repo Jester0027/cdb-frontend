@@ -1,72 +1,82 @@
 <div class="container">
-  <h1>Contact</h1>
-  <div class="row" *ngIf="errorMessage">
-    <div class="col-12 alert alert-danger text-center">
-      <p>{{ errorMessage }}</p>
-      <button class="btn btn-danger" (click)="clearError()">
-        Fermer l'erreur
-      </button>
+    <h1>Contact</h1>
+    <div class="row" *ngIf="errorMessage">
+        <div class="col-12 alert alert-danger text-center">
+            <p>{{ errorMessage }}</p>
+            <button class="btn btn-danger" (click)="clearError()">
+                Fermer l'erreur
+            </button>
+        </div>
     </div>
-  </div>
-  <button
-    id="back-button"
-    class="btn btn-primary"
-    *ngIf="animal"
-    (click)="navigateToLastPage()"
-  >
-    <fa-icon [icon]="leftArrowIcon"></fa-icon>
-    Retour
-  </button>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        id="email"
-        class="form-control"
-        formControlName="email"
-        placeholder="Adresse Email"
-      />
+    <div *ngIf="!isMessageSent">
+        <button
+                id="back-button"
+                class="btn btn-primary"
+                *ngIf="animal"
+                (click)="navigateToLastPage()"
+        >
+            <fa-icon [icon]="leftArrowIcon"></fa-icon>
+            Retour
+        </button>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                        id="email"
+                        class="form-control"
+                        formControlName="from"
+                        placeholder="Adresse Email"
+                />
+            </div>
+            <p
+                    *ngIf="form.controls.from.invalid && form.controls.from.touched"
+                    class="alert alert-danger"
+            >
+                L'addresse e-mail saisie est invalide
+            </p>
+            <div class="form-group">
+                <label for="subject">Sujet</label>
+                <input
+                  #subject
+                  id="subject"
+                  class="form-control"
+                  formControlName="subject"
+                  placeholder="Sujet"
+                />
+            </div>
+            <p
+                    *ngIf="form.controls.subject.invalid && form.controls.subject.touched"
+                    class="alert alert-danger"
+            >
+                Le sujet doit faire entre 4 et 70 charactères de long
+            </p>
+            <div class="form-group">
+                <label for="content">Message</label>
+                <textarea
+                        id="content"
+                        class="form-control"
+                        formControlName="content"
+                        placeholder="Message"
+                ></textarea>
+            </div>
+            <p
+                    *ngIf="form.controls.content.invalid && form.controls.content.touched"
+                    class="alert alert-danger"
+            >
+                Le contenu doit faire au moins 10 charactères de long
+            </p>
+            <p class="rgpd-info">Aucune donnée personnelle n’est conservée par notre site via ce formulaire</p>
+            <re-captcha #captchaRef (resolved)="resolved($event)" siteKey="6LebwKcZAAAAABA6aG-_EcGexPLShY4x7gBhLp5b"></re-captcha>
+            <button *ngIf="!isLoading" [disabled]="form.invalid || !userKey" type="submit" id="submit-button" class="btn btn-success">
+                Envoyer
+                <fa-icon [icon]="paperPlaneIcon"></fa-icon>
+            </button>
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+        </form>
     </div>
-    <p
-      *ngIf="form.controls.email.invalid && form.controls.email.touched"
-      class="alert alert-danger"
-    >
-      L'addresse e-mail saisie est invalide
-    </p>
-    <div class="form-group">
-      <label for="subject">Sujet</label>
-      <input
-        #subject
-        id="subject"
-        class="form-control"
-        formControlName="subject"
-        placeholder="Sujet"
-      />
+    <div *ngIf="isMessageSent">
+      <p style="text-align: center">
+        Votre message a bien été envoyé.
+      </p>
     </div>
-    <p
-      *ngIf="form.controls.subject.invalid && form.controls.subject.touched"
-      class="alert alert-danger"
-    >
-      Le sujet doit faire entre 4 et 70 charactères de long
-    </p>
-    <div class="form-group">
-      <label for="content">Message</label>
-      <textarea
-        id="content"
-        class="form-control"
-        formControlName="content"
-        placeholder="Message"
-      ></textarea>
-    </div>
-    <p
-      *ngIf="form.controls.content.invalid && form.controls.content.touched"
-      class="alert alert-danger"
-    >
-      Le contenu doit faire au moins 10 charactères de long
-    </p>
-    <button [disabled]="form.invalid" type="submit" class="btn btn-success">
-      Envoyer
-      <fa-icon [icon]="paperPlaneIcon"></fa-icon>
-    </button>
-  </form>
 </div>

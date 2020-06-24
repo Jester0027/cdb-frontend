@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
@@ -8,8 +8,10 @@ import {
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { AnimalsService } from './../../../services/animals.service';
-import { Animal } from './../../../models/animals/animal.model';
+import { AnimalsService } from '../../../services/animals.service';
+import { Animal } from '../../../models/animals/animal.model';
+import { ContactService } from '../../services/contact.service';
+import { RecaptchaComponent } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-contact-form',
@@ -19,14 +21,19 @@ import { Animal } from './../../../models/animals/animal.model';
 export class ContactFormComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   private animalsSub: Subscription;
+  private contactSub: Subscription;
+  @ViewChild('captchaRef') captchaRef: RecaptchaComponent;
   leftArrowIcon = faArrowCircleLeft;
   paperPlaneIcon = faPaperPlane;
+  userKey: string = null;
   animal: { name: string; id: string } = null;
   subject: string = null;
   errorMessage: string = null;
+  isMessageSent = false;
+  isLoading = false;
 
   form = new FormGroup({
-    email: new FormControl('', [
+    from: new FormControl('', [
       Validators.required,
       Validators.email,
       Validators.maxLength(254),
@@ -46,16 +53,17 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private animalsService: AnimalsService,
     private router: Router,
-    private location: Location
-  ) {}
+    private location: Location,
+    private contactService: ContactService
+  ) {
+  }
 
   ngOnInit(): void {
     this.routeSub = this.activatedRoute.queryParams.subscribe((params) => {
       if (params.animal && params.id) {
-        this.animal = { name: params.animal, id: params.id };
+        this.animal = {name: params.animal, id: params.id};
       }
     });
-    console.log(this.form);
 
     if (this.animal) {
       this.animalsSub = this.animalsService
@@ -65,11 +73,11 @@ export class ContactFormComponent implements OnInit, OnDestroy {
             if (this.animal.name !== res.name) {
               this.setError(`l'animal ne correspond pas a l'id indiqué`);
             }
-            this.subject = `[INFO] ${this.animal.name}`;
+            this.subject = `[INFO] ${ this.animal.name }`;
             this.form.controls.subject.setValue(this.subject);
             this.form.controls.subject.disable();
           },
-          (err) => {
+          () => {
             this.setError(`Une erreur inconnue est survenue`);
           }
         );
@@ -89,20 +97,37 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // @ts-ignore
+    const captchaElement = this.captchaRef.elementRef.nativeElement;
+    captchaElement.parentElement.removeChild(captchaElement);
     if (this.routeSub) {
       this.routeSub.unsubscribe();
     }
     if (this.animalsSub) {
       this.animalsSub.unsubscribe();
     }
+    if (this.contactSub) {
+      this.contactSub.unsubscribe();
+    }
   }
 
   onSubmit() {
-    // tslint:disable-next-line: forin
-    for (const [key, control] of Object.entries(this.form.controls)) {
-      console.log(`${key} : ${control.value}`);
-    }
-    // console.log(this.form);
+    this.isLoading = true;
+    const data = {...this.form.value, userKey: this.userKey};
+    this.contactSub = this.contactService.sendContact(data).subscribe(
+      () => {
+        this.isLoading = false;
+        this.isMessageSent = true;
+      },
+      () => {
+        this.isLoading = false;
+        this.errorMessage = 'Une erreur est survenue lors du traitement du formulaire';
+      }
+    );
+  }
+
+  resolved(e) {
+    this.userKey = e;
   }
 
   clearError() {
