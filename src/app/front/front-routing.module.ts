@@ -9,6 +9,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { FrontComponent } from './front.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
+import { DonationPageComponent } from './pages/donation-page/donation-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'animaux/:slug', component: AnimalDetailPageComponent },
       { path: 'evenements', component: EventsPageComponent },
       { path: 'evenements/:slug', component: EventDetailPageComponent },
+      { path: 'don', component: DonationPageComponent },
       { path: '**', component: NotFoundPageComponent },
     ],
   },
