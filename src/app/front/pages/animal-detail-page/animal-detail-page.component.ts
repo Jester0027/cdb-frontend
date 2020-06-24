@@ -18,7 +18,7 @@ export class AnimalDetailPageComponent implements OnInit {
   }
 
   componentLoadHandler(animal: Animal) {
-    this.titleService.setTitle(`Page d'adoption de ${ animal.name }`);
+    this.titleService.setTitle(`Page d'adoption de ${ animal.name } - ${environment.siteName}`);
     this.fbService
       .setTitle(`Adopter ${ animal.name }`)
       .setDescription(animal.description)

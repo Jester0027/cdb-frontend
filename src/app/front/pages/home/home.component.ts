@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Accueil');
+    this.titleService.setTitle(`Accueil - ${environment.siteName}`);
     this.fbService
       .setUrl(`${ environment.url }`)
       .setDescription('Site de l\'ASBL Coeur de Bouviers')

@@ -13,7 +13,7 @@ export class AnimalsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Animaux');
+    this.titleService.setTitle(`Animaux - ${environment.siteName}`);
     this.fbService
       .setUrl(`${ environment.url }/animaux`)
       .setDescription('Page des animaux à adopter du refuge Coeur de Bouviers')

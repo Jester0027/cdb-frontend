@@ -14,7 +14,7 @@ export class EventsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Évènements');
+    this.titleService.setTitle(`Évènements - ${environment.siteName}`);
     this.fbService
       .setUrl(`${ environment.url }/evenements`)
       .setDescription('Évènements de Coeur de Bouviers')

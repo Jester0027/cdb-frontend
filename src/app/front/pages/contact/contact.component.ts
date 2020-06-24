@@ -13,7 +13,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Contact');
+    this.titleService.setTitle(`Contact - ${environment.siteName}`);
     this.fbService
       .setUrl(`${ environment.url }/contact`)
       .setDescription('Page de contact Coeur de Bouviers')
