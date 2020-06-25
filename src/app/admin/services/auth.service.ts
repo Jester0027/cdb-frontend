@@ -5,8 +5,8 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
-import { environment } from './../../../environments/environment';
-import { User } from './../../models/user.model';
+import { environment } from '../../../environments/environment';
+import { User } from '../../models/user.model';
 
 interface TokenData {
   token: string;
@@ -21,11 +21,12 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId
-  ) {}
+  ) {
+  }
 
   loginCheck(username: string, password: string): Observable<TokenData> {
     return this.http
-      .post<TokenData>(`${environment.api}/api/login_check`, {
+      .post<TokenData>(`${ environment.api }/api/login_check`, {
         username,
         password,
       })
@@ -53,7 +54,7 @@ export class AuthService {
 
   private refreshToken() {
     return this.http
-      .post<TokenData>(`${environment.api}/api/token/refresh`, {
+      .post<TokenData>(`${ environment.api }/api/token/refresh`, {
         refreshToken: window.localStorage.getItem('refreshToken'),
       })
       .pipe(
@@ -67,11 +68,11 @@ export class AuthService {
   private postLogin(token: string = window.localStorage.getItem('token')) {
     return this.http
       .post<User>(
-        `${environment.api}/api/login`,
+        `${ environment.api }/api/login`,
         {},
         {
           headers: new HttpHeaders({
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${ token }`,
           }),
         }
       ).pipe(tap((user: User) => {
@@ -109,7 +110,11 @@ export class AuthService {
     this.router.navigate(['/admin', 'login']);
   }
 
-  registerUser(username: string, password: string) {
-    const user = { username, password };
+  public sendPasswordRecovery(payload: { email: string }): Observable<{ code: number, message: string }> {
+    return this.http.post<{ code: number, message: string }>(`${ environment.api }/api/send_password_recovery`, payload);
+  }
+
+  public passwordChange(payload: { email: string, token: string, password: string }): Observable<{ code: number, message: string }> {
+    return this.http.post<{ code: number, message: string }>(`${ environment.api }/api/password_recovery_change`, payload);
   }
 }
