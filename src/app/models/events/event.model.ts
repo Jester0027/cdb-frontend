@@ -9,6 +9,7 @@ export interface Event {
   city: string;
   zip_code: number;
   coordinates: string;
+  price: number;
   image_url: string;
   description: string;
   event_theme: EventTheme;
