@@ -1,32 +1,36 @@
 <div class="welcome">
-  <div id="main-frame">
-    <div class="gradient"></div>
-    <img
-      src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
-      alt="Photo de chien, Photo by Jamie Street on Unsplash"
-    />
-  </div>
-  <div id="image-text">
-    <div class="content">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-        quisquam placeat dolore obcaecati accusamus soluta!
-      </p>
-      <div class="actions">
-        <button class="app-btn"><a href="#more-info">Plus d'infos</a></button>
-        <div class="info">
-          <div class="icon">
-            <fa-icon [icon]="locationIcon"></fa-icon>
-          </div>
-          <p>7500 Rue de la Vallée</p>
-        </div>
-        <div class="info">
-          <div class="icon">
-            <fa-icon [icon]="phoneIcon"></fa-icon>
-          </div>
-          <p>+32 412345678</p>
-        </div>
-      </div>
+    <div id="main-frame">
+        <div class="gradient"></div>
+        <img
+                src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                alt="Photo de chien, Photo by Jamie Street on Unsplash"
+        />
     </div>
-  </div>
+    <div id="image-text">
+        <div class="content">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+                quisquam placeat dolore obcaecati accusamus soluta!
+            </p>
+            <div class="actions">
+                <button class="app-btn"><a href="#more-info">Plus d'infos</a></button>
+                <div class="info">
+                    <div class="icon">
+                        <fa-icon [icon]="locationIcon"></fa-icon>
+                    </div>
+                    <address>
+                        Grand Route 107a 7530 Tournai
+                    </address>
+                </div>
+                <a href="tel:+32495262244">
+                    <div class="info">
+                        <div class="icon">
+                            <fa-icon [icon]="phoneIcon"></fa-icon>
+                        </div>
+                        <p>+32 495262244</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
