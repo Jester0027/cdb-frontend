@@ -14,6 +14,7 @@ import { UsersFormComponent } from '../users-form/users-form.component';
 export class UsersSectionComponent implements OnInit, OnDestroy {
   private usersSub: Subscription;
   private dialogRefSub: Subscription;
+  private userDialogRefSub: Subscription;
 
   public isLoading = false;
   public error: string = null;
@@ -33,6 +34,9 @@ export class UsersSectionComponent implements OnInit, OnDestroy {
     }
     if (this.dialogRefSub) {
       this.dialogRefSub.unsubscribe();
+    }
+    if (this.userDialogRefSub) {
+      this.userDialogRefSub.unsubscribe();
     }
   }
 
@@ -60,7 +64,13 @@ export class UsersSectionComponent implements OnInit, OnDestroy {
   }
 
   public openAddDialog() {
-    this.dialog.open(UsersFormComponent);
+    const userDialogRef = this.dialog.open(UsersFormComponent);
+
+    this.userDialogRefSub = userDialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.fetchUsers();
+      }
+    });
   }
 
 }

@@ -1,12 +1,15 @@
 <div class="users-form">
     <p>Ajouter un utilisateur</p>
     <p>Un email avec les identifiants lui seront envoyés</p>
-    <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <mat-label>Adresse email</mat-label>
-            <input matInput formControlName="email" />
-        </mat-form-field>
-        <button mat-button type="submit">Ajouter</button>
+    <p style="color: red;" *ngIf="error">Un utilisateur existe déjà à cette adresse</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+            <mat-form-field>
+                <mat-label>Adresse email</mat-label>
+                <input matInput formControlName="email" />
+            </mat-form-field>
+        </div>
+        <button [disabled]="form.invalid" *ngIf="!isLoading" mat-button type="submit">Ajouter</button>
+        <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
     </form>
-    <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
 </div>

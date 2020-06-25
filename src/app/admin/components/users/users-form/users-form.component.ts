@@ -35,9 +35,12 @@ export class UsersFormComponent implements OnInit {
   }
 
   public onSubmit() {
+    this.isLoading = true;
     this.adminUsersService.add(this.form.get('email').value).subscribe(() => {
+      this.isLoading = false;
       this.matDialogRef.close(true);
     }, err => {
+      this.isLoading = false;
       this.error = err.message;
     });
   }
