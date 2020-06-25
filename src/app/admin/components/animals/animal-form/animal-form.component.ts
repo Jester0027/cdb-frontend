@@ -1,13 +1,12 @@
-import { AuthService } from './../../../services/auth.service';
-import { AdminAnimalsService } from './../../../services/admin-animals.service';
-import { PaginatedData } from './../../../../models/paginated-data.model';
-import { Refuge } from './../../../../models/animals/refuge.model';
-import { AnimalCategory } from './../../../../models/animals/animal-category.model';
-import { AnimalCategoriesService } from './../../../../services/animal-categories.service';
-import { RefugesService } from './../../../../services/refuges.service';
-import { AnimalsService } from './../../../../services/animals.service';
+import { AdminAnimalsService } from '../../../services/admin-animals.service';
+import { PaginatedData } from '../../../../models/paginated-data.model';
+import { Refuge } from '../../../../models/animals/refuge.model';
+import { AnimalCategory } from '../../../../models/animals/animal-category.model';
+import { AnimalCategoriesService } from '../../../../services/animal-categories.service';
+import { RefugesService } from '../../../../services/refuges.service';
+import { AnimalsService } from '../../../../services/animals.service';
 import { switchMap } from 'rxjs/operators';
-import { Animal } from './../../../../models/animals/animal.model';
+import { Animal } from '../../../../models/animals/animal.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -36,7 +35,8 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private adminAnimalsService: AdminAnimalsService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -60,6 +60,7 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
       height: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       age: ['', [Validators.required]],
+      ageUnit: ['y', [Validators.required]],
       gender: [null, [Validators.required]],
       attitude: [
         '',
@@ -112,7 +113,8 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
         this.form.get('race').setValue(animal.race);
         this.form.get('height').setValue(animal.height);
         this.form.get('weight').setValue(animal.weight);
-        this.form.get('age').setValue(animal.age);
+        this.form.get('age').setValue(animal.age.split(' ')[0]);
+        this.form.get('ageUnit').setValue(animal.age.split(' ')[1]);
         this.form.get('gender').setValue(animal.gender.toString());
         this.form.get('attitude').setValue(animal.attitude);
         this.form.get('description').setValue(animal.description);
@@ -135,11 +137,14 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(e) {
+  onSubmit() {
     const data = {
       ...this.form.value,
-      gender: this.form.get('gender').value === 'true' ? true : false,
+      age: `${ this.form.get('age').value } ${ this.form.get('ageUnit').value }`,
+      gender: this.form.get('gender').value === 'true',
     };
+    delete data.ageUnit;
+
     if (this.editMode) {
       this.adminAnimalsSub = this.adminAnimalsService
         .update(this.editedAnimal.id, data)
