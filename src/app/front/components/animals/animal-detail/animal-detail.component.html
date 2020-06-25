@@ -64,7 +64,7 @@
           <p><span class="label">race</span>: {{ animal.race }}</p>
           <p><span class="label">taille</span>: {{ animal.height }} cm</p>
           <p><span class="label">masse</span>: {{ animal.weight }} kg</p>
-          <p><span class="label">age</span>: {{ animal.age }} ans</p>
+          <p><span class="label">age</span>: {{ animal.age | animalAge }}</p>
           <p>
             <span class="label">Attitude de {{ animal.name }}</span
             >: {{ animal.attitude }}
