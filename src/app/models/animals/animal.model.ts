@@ -15,7 +15,7 @@ export interface Animal {
    * weight in kg
    */
   weight: number;
-  age: number;
+  age: string;
   /**
    * true if male, false if female
    */
@@ -23,6 +23,7 @@ export interface Animal {
   price: number;
   attitude?: string;
   description?: string;
+  is_adopted?: boolean;
   animal_category?: AnimalCategory;
   refuge?: Refuge;
   pictures?: Picture[];
