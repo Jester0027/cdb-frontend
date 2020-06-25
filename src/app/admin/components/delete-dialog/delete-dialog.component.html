@@ -2,8 +2,9 @@
   <p>
     Etes vous sur de vouloir supprimer : <span style="font-weight: bold;">{{ data.name }}</span> ?
   </p>
-  <div class="actions">
-    <button mat-raised-button color="warn" [mat-dialog-close]="true" (click)="delete()">Confirmer</button>
+  <div *ngIf="!isLoading" class="actions">
+    <button mat-raised-button color="warn" (click)="delete()">Confirmer</button>
     <button mat-stroked-button mat-dialog-close>Annuler</button>
   </div>
+  <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
 </div>
