@@ -57,6 +57,8 @@ import { EventPictureFormComponent } from './components/events/event-picture-for
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersSectionComponent } from './components/users/users-section/users-section.component';
 import { UsersFormComponent } from './components/users/users-form/users-form.component';
+import { LostPasswordPageComponent } from './pages/lost-password-page/lost-password-page.component';
+import { PasswordChangePageComponent } from './pages/password-change-page/password-change-page.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { UsersFormComponent } from './components/users/users-form/users-form.com
     UsersPageComponent,
     UsersSectionComponent,
     UsersFormComponent,
+    LostPasswordPageComponent,
+    PasswordChangePageComponent,
   ],
   imports: [
     CommonModule,

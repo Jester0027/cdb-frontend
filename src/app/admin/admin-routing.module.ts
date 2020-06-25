@@ -19,9 +19,13 @@ import { EditEventPageComponent } from './pages/edit-event-page/edit-event-page.
 import { NewEventPageComponent } from './pages/new-event-page/new-event-page.component';
 import { EventThemesPageComponent } from './pages/event-themes-page/event-themes-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
+import { LostPasswordPageComponent } from './pages/lost-password-page/lost-password-page.component';
+import { PasswordChangePageComponent } from './pages/password-change-page/password-change-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
+  { path: 'lost-password', component: LostPasswordPageComponent },
+  { path: 'password-change', component: PasswordChangePageComponent },
   {
     path: '',
     component: AdminComponent,
