@@ -3,7 +3,11 @@
     <h3>En savoir plus</h3>
     <div class="row">
       <div class="map col-lg-6">
-        <div class="map-container"></div>
+        <div class="map-container" *ngIf="browser">
+          <agm-map [latitude]="coords.lat" [longitude]="coords.lng" [zoom]="14">
+            <agm-marker [latitude]="coords.lat" [longitude]="coords.lng"></agm-marker>
+          </agm-map>
+        </div>
       </div>
       <div class="col-lg-6">
         <div class="info-card">

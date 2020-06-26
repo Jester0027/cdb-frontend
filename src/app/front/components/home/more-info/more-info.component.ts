@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import {
   faClock,
   faInfoCircle,
@@ -6,6 +6,7 @@ import {
   faPhone
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-more-info',
@@ -18,8 +19,15 @@ export class MoreInfoComponent implements OnInit {
   locationIcon = faMapMarkerAlt;
   phoneIcon = faPhone;
   facebookIcon = faFacebookSquare;
+  public browser = false;
+  public coords = {
+    lat: 50.595747,
+    lng: 3.471999
+  };
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.browser = isPlatformBrowser(this.platformId);
+  }
 }

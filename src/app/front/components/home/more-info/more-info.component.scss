@@ -25,7 +25,13 @@ h3 {
   width: 450px;
   height: 450px;
   border: solid 5px $darkPrimaryColor;
+  overflow: hidden;
   border-radius: 0 100px;
+}
+
+agm-map {
+  height: 100%;
+  width: 100%;
 }
 
 .info-card {
