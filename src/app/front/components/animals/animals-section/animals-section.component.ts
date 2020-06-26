@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { AnimalsService } from './../../../../services/animals.service';
-import { Animal } from './../../../../models/animals/animal.model';
-import { Meta, PaginatedData } from './../../../../models/paginated-data.model';
+import { AnimalsService } from '../../../../services/animals.service';
+import { Animal } from '../../../../models/animals/animal.model';
+import { Meta, PaginatedData } from '../../../../models/paginated-data.model';
 
 @Component({
   selector: 'app-animals-section',
@@ -24,7 +24,8 @@ export class AnimalsSectionComponent implements OnInit, OnDestroy {
     private animalsService: AnimalsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -56,6 +57,8 @@ export class AnimalsSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.animalsSub.unsubscribe();
+    if (this.animalsSub) {
+      this.animalsSub.unsubscribe();
+    }
   }
 }
