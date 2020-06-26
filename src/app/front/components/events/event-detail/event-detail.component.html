@@ -1,5 +1,39 @@
 <div class="container">
-  <div class="row">
-    
+  <div *ngIf="!isLoading && !error">
+    <div class="background-image">
+      <img [src]="image" [alt]="imageDescription">
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ event.title }}</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="agm">
+            <agm-map *ngIf="isBrowser" [latitude]="coords.lat" [longitude]="coords.lng">
+              <agm-marker [latitude]="coords.lat" [longitude]="coords.lng"></agm-marker>
+            </agm-map>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 description-box">
+          <p><span class="key">Description: </span>{{ event.description }}</p>
+          <p><span class="key">Prix: </span>{{ event.price }} euros</p>
+          <p><span class="key">Adresse: </span>{{ event.address }}, {{ event.zip_code }}, {{ event.city }}</p>
+          <p><span class="key">Date: </span>{{ event.event_date | date: 'fullDate' }}</p>
+          <p><span class="key">Heure: </span>{{ event.event_date | date: 'shortTime' }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-event-registration-form [event]="event"></app-event-registration-form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLoading" style="text-align: center; margin-top: 50px;">
+    <app-loading-spinner></app-loading-spinner>
   </div>
 </div>
