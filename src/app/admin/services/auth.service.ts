@@ -48,8 +48,8 @@ export class AuthService {
         return this.refreshToken();
       }
       token = token ?? window.localStorage.getItem('token');
+      return this.postLogin(token).pipe(catchError(() => this.refreshToken()));
     }
-    return this.postLogin(token).pipe(catchError(() => this.refreshToken()));
   }
 
   private refreshToken() {
