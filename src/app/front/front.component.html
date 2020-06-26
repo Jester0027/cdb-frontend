@@ -1,4 +1,5 @@
 <div class="front">
+  <app-cookie-consent *ngIf="!hasCookieConsent" (approved)="setCookieConsent()"></app-cookie-consent>
   <div>
     <app-header></app-header>
     <router-outlet></router-outlet>
