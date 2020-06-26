@@ -1,0 +1,27 @@
+.cookie-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background-color: #303030;
+  z-index: 2000;
+
+  .container {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  p {
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    background-color: #1896ff;
+    color: white;
+  }
+}

@@ -30,6 +30,9 @@ import { EventDetailComponent } from './components/events/event-detail/event-det
 import { EventDetailPageComponent } from './pages/event-detail-page/event-detail-page.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DonationPageComponent } from './pages/donation-page/donation-page.component';
+import { AgmCoreModule } from '@agm/core';
+import { EventRegistrationFormComponent } from './components/events/event-registration-form/event-registration-form.component';
+import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,8 @@ import { DonationPageComponent } from './pages/donation-page/donation-page.compo
     EventDetailPageComponent,
     SidenavComponent,
     DonationPageComponent,
+    EventRegistrationFormComponent,
+    CookieConsentComponent,
   ],
   imports: [
     CommonModule,
@@ -64,7 +69,9 @@ import { DonationPageComponent } from './pages/donation-page/donation-page.compo
     FontAwesomeModule,
     ReactiveFormsModule,
     SharedModule,
-    RecaptchaModule
+    RecaptchaModule,
+    AgmCoreModule
   ],
 })
-export class FrontModule {}
+export class FrontModule {
+}
