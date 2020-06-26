@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
@@ -11,7 +11,6 @@ import {
 import { AnimalsService } from '../../../services/animals.service';
 import { Animal } from '../../../models/animals/animal.model';
 import { ContactService } from '../../services/contact.service';
-import { RecaptchaComponent } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-contact-form',
@@ -22,7 +21,6 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   private animalsSub: Subscription;
   private contactSub: Subscription;
-  @ViewChild('captchaRef') captchaRef: RecaptchaComponent;
   leftArrowIcon = faArrowCircleLeft;
   paperPlaneIcon = faPaperPlane;
   userKey: string = null;
@@ -74,8 +72,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
               this.setError(`l'animal ne correspond pas a l'id indiqué`);
             }
             this.subject = `[INFO] ${ this.animal.name }`;
-            this.form.controls.subject.setValue(this.subject);
-            this.form.controls.subject.disable();
+            this.form.get('subject').setValue(this.subject);
+            this.form.get('subject').disable();
           },
           () => {
             this.setError(`Une erreur inconnue est survenue`);
@@ -97,9 +95,6 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // @ts-ignore
-    const captchaElement = this.captchaRef.elementRef.nativeElement;
-    captchaElement.parentElement.removeChild(captchaElement);
     if (this.routeSub) {
       this.routeSub.unsubscribe();
     }
@@ -113,7 +108,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.isLoading = true;
-    const data = {...this.form.value, userKey: this.userKey};
+    const data = {...this.form.value, userKey: this.userKey, subject: this.subject};
     this.contactSub = this.contactService.sendContact(data).subscribe(
       () => {
         this.isLoading = false;
