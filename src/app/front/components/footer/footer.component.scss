@@ -5,7 +5,7 @@ $iconSize: 42px;
 footer {
   background-color: $accentColor;
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   color: $altText;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@ footer {
   align-items: center;
 }
 
-.info {
+.info>div {
   position: relative;
   display: flex;
   align-items: center;
@@ -31,10 +31,29 @@ fa-icon {
   color: $darkPrimaryColor;
 }
 
-.info>p {
+.info p {
   position: absolute;
   left: 70px;
   font-size: 20px;
   color: $altText;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.img {
+  height: 150px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+@media  screen and (max-width: 991px) {
+  .coords {
+    margin-top: 25px;
+  }
+  .info>div {
+    margin: auto;
+  }
 }
