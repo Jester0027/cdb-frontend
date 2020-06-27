@@ -7,6 +7,13 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+.tel-link {
+  transition: transform 300ms;
+}
+
+.tel-link:hover {
+  transform: scale(1.1);
+}
 
 #main-frame,
 #image-text {

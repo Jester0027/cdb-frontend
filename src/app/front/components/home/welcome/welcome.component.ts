@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,11 +6,10 @@ import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent {
   locationIcon = faMapMarkerAlt;
   phoneIcon = faPhone;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor() {
+  }
 }
