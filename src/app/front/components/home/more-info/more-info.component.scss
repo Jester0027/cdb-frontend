@@ -53,7 +53,7 @@ agm-map {
     transform: rotate(-45deg);
   }
 
-  >fa-icon {
+  > fa-icon {
     position: absolute;
     font-size: 40px;
     color: $darkPrimaryColor;
@@ -63,7 +63,7 @@ agm-map {
 }
 
 .info-card .content {
-  margin: 25px;    
+  margin: 25px;
 
   .info {
     position: relative;
@@ -88,6 +88,23 @@ agm-map {
     }
   }
 
+}
+
+.info-card.schedule {
+  display: flex;
+  align-items: center;
+
+  .content {
+
+    > p {
+      font-size: 26px;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+  }
 }
 
 figure.bone {
