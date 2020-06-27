@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { environment } from './../../../../../environments/environment';
-import { Picture } from './../../../../models/animals/picture.model';
-import { Animal } from './../../../../models/animals/animal.model';
-import { AnimalsService } from './../../../../services/animals.service';
-import { AdminAnimalsService } from './../../../services/admin-animals.service';
+import { environment } from '../../../../../environments/environment';
+import { Picture } from '../../../../models/animals/picture.model';
+import { Animal } from '../../../../models/animals/animal.model';
+import { AnimalsService } from '../../../../services/animals.service';
+import { AdminAnimalsService } from '../../../services/admin-animals.service';
 
 @Component({
   selector: 'app-animal-picture-form',
@@ -20,12 +20,14 @@ export class AnimalPictureFormComponent implements OnInit, OnDestroy {
   animalId: string;
   pictures: Picture[] = [];
   isLoading = false;
+  error: string = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private adminAnimalsService: AdminAnimalsService,
     private animalsService: AnimalsService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -37,6 +39,9 @@ export class AnimalPictureFormComponent implements OnInit, OnDestroy {
       .subscribe((animal: Animal) => {
         this.isLoading = false;
         this.pictures = animal.pictures;
+      }, err => {
+        this.isLoading = false;
+        this.error = err.message;
       });
   }
 
@@ -52,10 +57,10 @@ export class AnimalPictureFormComponent implements OnInit, OnDestroy {
     if (name.startsWith('http') || name.startsWith('https')) {
       return name;
     }
-    return `${environment.api.replace(
+    return `${ environment.api.replace(
       '/index.php',
       ''
-    )}/images/animal_pictures/${name}`;
+    ) }/images/animal_pictures/${ name }`;
   }
 
   deletePicture(id: string) {
@@ -65,6 +70,7 @@ export class AnimalPictureFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.isLoading = true;
     this.animalsSub = this.adminAnimalsService
       .addPictures(this.animalId, this.files)
       .pipe(
@@ -76,7 +82,11 @@ export class AnimalPictureFormComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((animal: Animal) => {
+        this.isLoading = false;
         this.pictures = animal.pictures;
+      }, err => {
+        this.isLoading = false;
+        this.error = err.message;
       });
   }
 
