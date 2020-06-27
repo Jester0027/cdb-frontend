@@ -9,7 +9,7 @@
     ></app-paginator>
   </div>
   <div class="row" *ngIf="!isLoading && !error">
-    <div class="animal-col col-6" *ngFor="let animal of animals">
+    <div class="animal-col col-lg-6" *ngFor="let animal of animals">
       <app-animal-card [animal]="animal"></app-animal-card>
     </div>
   </div>
