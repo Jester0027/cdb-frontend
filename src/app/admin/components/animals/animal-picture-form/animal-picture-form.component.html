@@ -22,12 +22,14 @@
     </div>
     <button mat-raised-button (click)="onSubmit()">Envoyer</button>
   </div>
-  <div class="pictures" *ngIf="pictures">
+  <p style="text-align: center; color: red;" *ngIf="error">{{ error }}</p>
+  <mat-spinner *ngIf="isLoading && !error" style="margin: auto"></mat-spinner>
+  <div class="pictures" *ngIf="!isLoading && pictures && !error">
     <figure *ngFor="let pic of pictures" (click)="deletePicture(pic.id)">
       <img [src]="getSrc(pic.picture)" alt="">
     </figure>
   </div>
-  <div *ngIf="pictures.length <= 0">
+  <div *ngIf="!isLoading && pictures.length <= 0 && !error">
     <p style="text-align: center; font-size: 28px;">Aucune photo</p>
   </div>
 </div>
