@@ -48,3 +48,10 @@ h1 {
     font-size: 28px;
   }
 }
+
+@media screen and (max-width: 991px) {
+  .details {
+    text-align: center;
+    margin-top: 25px;
+  }
+}
