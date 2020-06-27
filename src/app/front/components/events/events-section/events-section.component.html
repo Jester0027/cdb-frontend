@@ -10,12 +10,12 @@
   <div class="row" *ngIf="!isLoading && !error">
     <div class="col-12" *ngFor="let event of events" >
       <a [routerLink]="[event.slug]">
-        <div class="card">
+        <div class="card" style="overflow: hidden;">
           <div class="row">
-            <div class="col-4 img card-img">
+            <div class="col-lg-4 img card-img">
               <img [src]="event.image_url" [alt]="'Photo de l\'évènement ' + event.title">
             </div>
-            <div class="col-8 card-body">
+            <div class="col-lg-8 card-body">
               <div>
                 <h3 style="font-weight: bold">{{ event.title }}</h3>
                 <p>{{ event.description }}</p>
