@@ -108,14 +108,18 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.isLoading = true;
-    const data = {...this.form.value, userKey: this.userKey, subject: this.subject};
+    let data = {...this.form.value, userKey: this.userKey};
+    if (this.subject) {
+      data = {...data, subject: this.subject};
+    }
     this.contactSub = this.contactService.sendContact(data).subscribe(
       () => {
         this.isLoading = false;
         this.isMessageSent = true;
       },
-      () => {
+      (err) => {
         this.isLoading = false;
+        console.log(err);
         this.errorMessage = 'Une erreur est survenue lors du traitement du formulaire';
       }
     );
