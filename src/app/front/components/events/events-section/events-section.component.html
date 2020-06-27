@@ -1,5 +1,8 @@
 <div class="container">
   <h1>Évènements</h1>
+  <div class="row" *ngIf="!isLoading && !error && meta.totalItems < 1">
+    <p style="text-align: center; margin: auto;">Aucun évènement n'est organisé pour le moment</p>
+  </div>
   <div class="row" *ngIf="!isLoading && !error && meta.maxPages > 1">
     <app-paginator
       (changePage)="setLoader()"

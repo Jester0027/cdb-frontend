@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Animaux à adopter</h1>
-
+  <div class="row" *ngIf="!isLoading && !error && meta.totalItems < 1">
+    <p style="text-align: center; margin: auto;">Il n'y a pas d'animaux dans notre refuge.</p>
+  </div>
   <div class="row" *ngIf="!isLoading && !error && meta.maxPages > 1">
     <app-paginator
       (changePage)="setLoader()"
