@@ -26,6 +26,7 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
   editedAnimal: Animal = null;
   isLoading = false;
   editMode = false;
+  error: string = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -138,6 +139,7 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.isLoading = true;
     const data = {
       ...this.form.value,
       age: `${ this.form.get('age').value } ${ this.form.get('ageUnit').value }`,
@@ -150,19 +152,25 @@ export class AnimalFormComponent implements OnInit, OnDestroy {
         .update(this.editedAnimal.id, data)
         .subscribe(
           () => {
+            this.isLoading = false;
             this.router.navigate(['/admin', 'animaux']);
           },
           (err) => {
+            this.isLoading = false;
             console.log(err);
+            this.error = err.message;
           }
         );
     } else {
       this.adminAnimalsSub = this.adminAnimalsService.add(data).subscribe(
         () => {
+          this.isLoading = false;
           this.router.navigate(['/admin', 'animaux']);
         },
         (err) => {
+          this.isLoading = false;
           console.log(err);
+          this.error = err.message;
         }
       );
     }

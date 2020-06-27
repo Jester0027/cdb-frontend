@@ -1,6 +1,7 @@
 <div class="animal-form">
   <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-container">
+      <p *ngIf="error" style="color: red">{{ error }}</p>
       <mat-form-field>
         <mat-label>Nom</mat-label>
         <input matInput formControlName="name" />
