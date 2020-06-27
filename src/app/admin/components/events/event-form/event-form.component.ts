@@ -1,15 +1,15 @@
-import { AdminEventService } from './../../../services/admin-event.service';
+import { AdminEventService } from '../../../services/admin-event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { of, Subscription } from 'rxjs';
 
-import { GeoCodingService } from './../../../services/geo-coding.service';
-import { EventsService } from './../../../../services/events.service';
-import { Event } from './../../../../models/events/event.model';
-import { EventTheme } from './../../../../models/events/event-theme.model';
+import { GeoCodingService } from '../../../services/geo-coding.service';
+import { EventsService } from '../../../../services/events.service';
+import { Event } from '../../../../models/events/event.model';
+import { EventTheme } from '../../../../models/events/event-theme.model';
 import { switchMap } from 'rxjs/operators';
-import { EventThemesService } from './../../../../services/event-themes.service';
+import { EventThemesService } from '../../../../services/event-themes.service';
 import { DateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 
@@ -45,12 +45,13 @@ export class EventFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private datePipe: DatePipe,
     private adapter: DateAdapter<any>
-  ) {}
+  ) {
+  }
 
   calculateCoords() {
     this.geoCodingService
       .getCoordinates(
-        `${this.form.get('address').value}-${this.form.get('city').value}-${
+        `${ this.form.get('address').value }-${ this.form.get('city').value }-${
           this.form.get('zip_code').value
         }`
       )
@@ -62,8 +63,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
             longitude: +res.longitude,
           };
         },
-        (err) => {
-          this.coordsError = "L'adresse n'a pas pu etre trouvée";
+        () => {
+          this.coordsError = 'L\'adresse n\'a pas pu etre trouvée';
         }
       );
   }
@@ -118,6 +119,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
       event_theme: this.fb.group({
         slug: ['', [Validators.required]],
       }),
+      price: ['', [Validators.required]]
     });
 
     this.formSub = this.eventThemesService
@@ -157,6 +159,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
           this.form.get('coordinates').setValue(event.coordinates);
           this.form.get('description').setValue(event.description);
           this.form.get('event_theme.slug').setValue(event.event_theme.slug);
+          this.form.get('price').setValue(event.price);
         }
       });
   }
@@ -178,6 +181,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.isLoading = true;
     const data = this.form.value;
     delete data.date;
     delete data.time;
@@ -185,27 +189,29 @@ export class EventFormComponent implements OnInit, OnDestroy {
     const [h, m] = this.form.get('time').value.split(':');
     date.setHours(+h, +m);
     data.event_date = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ssZZZZZ');
-    data.coordinates = `${this.coords.latitude},${this.coords.longitude}`;
+    data.coordinates = `${ this.coords.latitude },${ this.coords.longitude }`;
     if (this.editMode) {
       this.submitSub = this.adminEventService
         .update(this.eventId, data)
         .subscribe(
-          (res) => {
-            console.log(res);
+          () => {
+            this.isLoading = false;
             this.router.navigate(['/admin', 'evenements']);
           },
           (err) => {
+            this.isLoading = false;
             console.log(err);
             this.errorMessage = err.message;
           }
         );
     } else {
       this.submitSub = this.adminEventService.add(data).subscribe(
-        (res) => {
-          console.log(res);
+        () => {
+          this.isLoading = false;
           this.router.navigate(['/admin', 'evenements']);
         },
         (err) => {
+          this.isLoading = false;
           console.log(err);
           this.errorMessage = err.message;
         }
