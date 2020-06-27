@@ -6,8 +6,9 @@
         <img [src]="getSrc(animal.pictures[0] ? animal.pictures[0].picture : null)" [alt]="description" class="card-img-top">
       </div>
       <div class="card-body">
-        <h5 class="card-title text-center">{{ animal.name }}</h5>
-        <p>{{ animal.gender ? 'male' : 'femelle' }}</p>
+        <h5 class="card-title">{{ animal.name }}</h5>
+        <p><span style="font-weight: bold">{{ animal.animal_category.name }} {{ animal.race }}</span> de {{ animal.age | animalAge }}.</p>
+        <p>{{ animal.description }}</p>
       </div>
     </a>
   </div>
