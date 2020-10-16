@@ -72,6 +72,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
         return this.eventsService.fetchOneEventFromSlug(params.slug);
       })).subscribe((event: Event) => {
         this.event = event;
+        this.loaded.emit(event);
         this.coords = {
           lat: +event.coordinates.split(',')[0],
           lng: +event.coordinates.split(',')[1],

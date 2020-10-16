@@ -2,6 +2,10 @@
 
 $iconSize: 32px;
 
+strong {
+  font-weight: normal;
+}
+
 .block {
   background: $primaryBlockColor;
   min-height: 300px;
